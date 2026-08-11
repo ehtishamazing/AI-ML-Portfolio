@@ -227,15 +227,15 @@
         }
       });
 
-      // Initial setup for reveals
-      gsap.set(".reveal", { opacity: 0 });
-      gsap.set(".reveal-top", { y: -30 });
-      gsap.set(".reveal-bottom", { y: 30 });
-      gsap.set(".reveal-left", { x: -30 });
-      gsap.set(".reveal-right", { x: 30 });
+      // Initial setup for reveals ONLY in the skills section
+      gsap.set("#skills .reveal", { opacity: 0 });
+      gsap.set("#skills .reveal-top", { y: -30 });
+      gsap.set("#skills .reveal-bottom", { y: 30 });
+      gsap.set("#skills .reveal-left", { x: -30 });
+      gsap.set("#skills .reveal-right", { x: 30 });
       
       // Staggered entrance for panels
-      skillsTl.to(".reveal", {
+      skillsTl.to("#skills .reveal", {
         opacity: 1,
         x: 0,
         y: 0,
