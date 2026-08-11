@@ -218,9 +218,12 @@
     if (typeof ScrollTrigger !== 'undefined') {
       
       var skillsTl = gsap.timeline({
+        paused: true,
         scrollTrigger: {
           trigger: "#skills",
-          start: "top 75%" // Triggers when the top of the skills section is 25% down the screen
+          start: "top 75%",
+          onEnter: function() { skillsTl.restart(); },
+          onLeaveBack: function() { skillsTl.pause(0); }
         }
       });
 
@@ -231,10 +234,6 @@
       gsap.set(".reveal-left", { x: -30 });
       gsap.set(".reveal-right", { x: 30 });
       
-      // Initial setup for counters
-      var counters = document.querySelectorAll('.counter');
-      gsap.set(counters, { opacity: 0, scale: 0.9, textShadow: "0 0 0px rgba(199, 36, 60, 0)" });
-
       // Staggered entrance for panels
       skillsTl.to(".reveal", {
         opacity: 1,
@@ -245,49 +244,69 @@
         ease: "power3.out"
       });
 
-      // Tie counters directly to the timeline so they animate 100% of the time the panels do
-      skillsTl.add(function() {
-        counters.forEach(function(counter, index) {
-          var target = +counter.getAttribute('data-target');
-          var hasPlus = counter.getAttribute('data-plus') === 'true';
-          var obj = { val: 0 };
-          
-          var tl = gsap.timeline({ delay: index * 0.15 });
-          
-          // 1. Initial fade in & slight scale up with soft burgundy glow
-          tl.to(counter, {
-            opacity: 1,
-            scale: 1.08,
-            textShadow: "0 0 15px rgba(199, 36, 60, 0.4)",
-            duration: 0.4,
-            ease: "power2.out"
-          });
-          
-          // 2. Count up smoothly
-          tl.to(obj, {
-            val: target,
-            duration: 1.8,
-            ease: "power2.out",
-            onUpdate: function() {
-              var currentVal = Math.round(obj.val);
-              counter.innerHTML = currentVal + (hasPlus ? "+" : "");
-            }
-          }, "-=0.4");
-          
-          // 3. Tiny pulse when final value is reached
-          tl.to(counter, {
-            scale: 1.1,
-            textShadow: "0 0 25px rgba(199, 36, 60, 0.8)",
-            duration: 0.15,
-            ease: "power2.out"
-          }).to(counter, {
-            scale: 1,
-            textShadow: "0 0 10px rgba(199, 36, 60, 0.2)",
-            duration: 0.4,
-            ease: "power2.inOut"
-          });
+      // Animate progress bars from 0 to their inline widths
+      skillsTl.from(".hud-progress-fill", {
+        width: "0%",
+        duration: 1.5,
+        ease: "power3.out",
+        stagger: 0.05
+      }, "-=0.8");
+      
+      // Stats Counter Timeline
+      var counters = document.querySelectorAll('.counter');
+      gsap.set(counters, { opacity: 0, scale: 0.9, textShadow: "0 0 0px rgba(199, 36, 60, 0)" });
+      
+      var statsTl = gsap.timeline({
+        paused: true,
+        scrollTrigger: {
+          trigger: ".hud-stats-grid",
+          start: "top 85%",
+          onEnter: function() { statsTl.restart(); },
+          onLeaveBack: function() { 
+            statsTl.pause(0);
+            counters.forEach(function(c) { c.innerHTML = "0"; });
+          }
+        }
+      });
+
+      counters.forEach(function(counter, index) {
+        var target = +counter.getAttribute('data-target');
+        var hasPlus = counter.getAttribute('data-plus') === 'true';
+        var obj = { val: 0 };
+        
+        // Fade in & scale up
+        statsTl.to(counter, {
+          opacity: 1,
+          scale: 1.08,
+          textShadow: "0 0 15px rgba(199, 36, 60, 0.4)",
+          duration: 0.4,
+          ease: "power2.out"
+        }, index * 0.15);
+        
+        // Count up smoothly
+        statsTl.to(obj, {
+          val: target,
+          duration: 1.8,
+          ease: "power2.out",
+          onUpdate: function() {
+            counter.innerHTML = Math.round(obj.val) + (hasPlus ? "+" : "");
+          }
+        }, index * 0.15);
+        
+        // Pulse at end
+        statsTl.to(counter, {
+          scale: 1.1,
+          textShadow: "0 0 25px rgba(199, 36, 60, 0.8)",
+          duration: 0.15,
+          ease: "power2.out"
+        }, (index * 0.15) + 1.8)
+        .to(counter, {
+          scale: 1,
+          textShadow: "0 0 10px rgba(199, 36, 60, 0.2)",
+          duration: 0.4,
+          ease: "power2.inOut"
         });
-      }, "-=0.8"); // Start right as panels are fading in
+      });
     }
 
     // ==========================================
