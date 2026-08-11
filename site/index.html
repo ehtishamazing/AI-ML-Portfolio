@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ehtisham Ul Haq — AI &amp; ML Engineer</title>
+<meta name="description" content="Portfolio of Ehtisham Ul Haq — AI Practitioner, Machine Learning &amp; Agentic Automation. BSAI student at PAF-IAST.">
+
+<!-- Open Graph / Social Sharing Meta Tags -->
+<meta property="og:title" content="Ehtisham Ul Haq | AI &amp; ML Engineer">
+<meta property="og:description" content="Portfolio of Ehtisham Ul Haq — AI Practitioner, Machine Learning &amp; Agentic Automation. BSAI student at PAF-IAST.">
+<meta property="og:image" content="https://ehtisham.com/images/og-image.png">
+<meta property="og:url" content="https://ehtisham.com">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=block" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<!-- Preloader (Monogram Fill) -->
+<div id="preloader" class="preloader">
+  <div class="preloader__logo">
+    EH
+    <div class="preloader__fill">EH</div>
+  </div>
+</div>
+
+<!-- Custom Cursor (Projects Section) -->
+<div id="custom-cursor" class="custom-cursor" aria-hidden="true">VIEW</div>
+
+<!-- grain / noise overlay -->
+<svg class="noise-svg" aria-hidden="true">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
+    <feColorMatrix type="saturate" values="0"></feColorMatrix>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#grain)"></rect>
+</svg>
+
+<!-- ============ NAV (appears from Profile section onward) ============ -->
+<nav class="tabnav" id="tabnav" aria-label="Section navigation">
+  <div class="tabnav__mark">EH</div>
+  <div class="tabnav__pills">
+    <button class="pill" data-target="profile">PROFILE</button>
+    <button class="pill" data-target="skills">SKILL MATRIX</button>
+    <button class="pill" data-target="archive">CERTIFICATES</button>
+    <button class="pill" data-target="projects">PROJECT</button>
+    <button class="pill" data-target="contact">CONTACT PERSON</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO (Cinematic) ============ -->
+  <section id="hero" class="screen hero-cinematic">
+    <div class="hero__mark">EH</div>
+
+    <div class="hero-stage">
+      
+      <!-- Background Graphic -->
+      <div class="hero__red-circle"></div>
+
+      <!-- Typography (Layered via CSS z-index) -->
+      <div class="hero-letters">
+        <span class="h-let h-let-1 z-front">P</span>
+        <span class="h-let h-let-2 z-front">O</span>
+        <span class="h-let h-let-3 z-back">R</span>
+        <span class="h-let h-let-4 z-front">T</span>
+        <span class="h-let h-let-5 z-front">F</span>
+        <span class="h-let h-let-6 z-back">O</span>
+        <span class="h-let h-let-7 z-back">L</span>
+        <span class="h-let h-let-8 z-back">I</span>
+        <span class="h-let h-let-9 z-back">O</span>
+      </div>
+      <div class="hero-year-wrap z-front">
+        2026
+      </div>
+
+      <!-- Character Assets -->
+      <div class="hero-characters">
+        <video id="walk-vid" class="h-char-video" src="images/ehtisham-walk-intro.webm" playsinline preload="auto"></video>
+        <img class="h-char-final" src="images/ehtisham-final-pose.png" alt="Ehtisham Ul Haq">
+      </div>
+
+      <!-- UI Layer (Designation) -->
+      <div class="hero-ui">
+        <div class="hero__designation h-ui-item">
+          AI &amp; ML ENGINEER
+        </div>
+      </div>
+      
+      <!-- Top Right Menu -->
+      <div class="hero__menu">
+        <button data-target="profile" class="hero__menu-item">START</button>
+        <button data-target="projects" class="hero__menu-item">PROJECTS</button>
+        <button data-target="contact" class="hero__menu-item">EXIT</button>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ============ PROFILE ============ -->
+  <section id="profile" class="screen profile">
+    <div class="profile__layout">
+      
+      <!-- Left Identity -->
+      <div class="profile__left">
+        <div class="profile__intro reveal reveal-top">
+          <p class="profile__eyebrow">HELLO, I AM</p>
+          <h2 class="profile__name">EHTISHAM<br>UL HAQ</h2>
+        </div>
+        <div class="profile__portrait-container reveal reveal-left">
+          <div class="profile__glow"></div>
+          <!-- Spark particles generated via JS or CSS -->
+          <div class="spark spark-1"></div><div class="spark spark-2"></div><div class="spark spark-3"></div>
+          <img class="profile__img" src="images/ehtisham-about.png" alt="Ehtisham Ul Haq">
+        </div>
+      </div>
+
+      <!-- Right Content Grid -->
+      <div class="profile__right reveal reveal-right" style="transition-delay: 0.2s;">
+        
+        <div class="profile__section">
+          <h3 class="profile__heading">ABOUT ME</h3>
+          <p class="profile__about">AI practitioner and BSAI student at PAF‑IAST with hands‑on experience building multi‑agent AI systems, agentic automation pipelines, and machine learning solutions. Skilled in Python, n8n, LLM orchestration, RAG architectures, and database management &mdash; complemented by a background in professional content writing that sharpens documentation and cross‑functional communication.</p>
+        </div>
+
+        <div class="profile__section">
+          <h3 class="profile__heading">SOFTWARE SKILLS</h3>
+          <div class="skills-grid">
+            <div class="skill-icon" title="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"></div>
+            <div class="skill-icon" title="TensorFlow"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"></div>
+            <div class="skill-icon" title="Scikit-learn"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn"></div>
+            <div class="skill-icon" title="YOLOv11"><img src="https://cdn.simpleicons.org/ultralytics/0055FF" alt="YOLOv11"></div>
+            <div class="skill-icon" title="OpenCV"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg" alt="OpenCV"></div>
+            <div class="skill-icon" title="n8n"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n"></div>
+            <div class="skill-icon" title="LangChain (RAG)"><img src="https://cdn.simpleicons.org/langchain/FFFFFF" alt="LangChain"></div>
+            <div class="skill-icon" title="MySQL / MongoDB"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"></div>
+            <div class="skill-icon" title="Docker"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"></div>
+            <div class="skill-icon" title="Git / GitHub"><img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub"></div>
+          </div>
+        </div>
+
+        <div class="profile__cols">
+          <div class="profile__section">
+            <h3 class="profile__heading">EDUCATION</h3>
+            <div class="edu-entry">
+              <span class="edu-bullet"></span>
+              <div>
+                <p class="edu-years">2024 - PRESENT</p>
+                <p class="edu-school">PAF‑IAST, HARIPUR</p>
+                <p class="edu-degree">BSc. Artificial Intelligence</p>
+              </div>
+            </div>
+            <div class="edu-entry">
+              <span class="edu-bullet"></span>
+              <div>
+                <p class="edu-years">2020 - 2022</p>
+                <p class="edu-school">TAMEER‑I‑WATTAN SCHOOLS</p>
+                <p class="edu-degree">Intermediate, Pre-Medical</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile__section">
+            <h3 class="profile__heading">EXPERIENCE</h3>
+            <div class="edu-entry">
+              <span class="edu-bullet"></span>
+              <div>
+                <p class="edu-school">SEO CONTENT WRITER</p>
+                <p class="edu-years">Sparking Asia (Jun - Dec 2026)</p>
+                <p class="edu-degree">Remote · 100+ clients</p>
+              </div>
+            </div>
+            <div class="edu-entry">
+              <span class="edu-bullet"></span>
+              <div>
+                <p class="edu-school">OPERATIONS INTERN</p>
+                <p class="edu-years">OZ Career Gurus (Jun - Aug 2026)</p>
+                <p class="edu-degree">Rawalpindi, Pakistan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HUD SKILLS (LANGUAGES & TOOLS) ============ -->
+  <section id="skills" class="screen skills hud-screen">
+    
+    <!-- Background Elements -->
+    <div class="hud-bg">
+      <div class="hud-grid"></div>
+      <div class="hud-scanline"></div>
+      <div class="hud-particles"></div>
+      <div class="hud-ambient-glow"></div>
+    </div>
+
+    <!-- HUD Top Status Bar -->
+    <div class="hud-status-bar reveal reveal-top">
+      <div class="hud-status-left">
+        <div class="hud-status-item">
+          <span class="hud-label">SYSTEM STATUS</span>
+          <span class="hud-val hud-text-cyan">ONLINE</span>
+        </div>
+        <div class="hud-status-item">
+          <span class="hud-label">LAST UPDATED</span>
+          <span class="hud-val hud-text-cyan">MAY 2026</span>
+        </div>
+        <div class="hud-status-item">
+          <span class="hud-label">USER</span>
+          <span class="hud-val hud-text-cyan">EHTISHAM UL HAQ</span>
+        </div>
+        <div class="hud-status-item">
+          <span class="hud-label">ROLE</span>
+          <span class="hud-val hud-text-cyan">AI & ML ENGINEER</span>
+        </div>
+        <div class="hud-status-item">
+          <span class="hud-label">LOCATION</span>
+          <span class="hud-val hud-text-cyan">PAKISTAN</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-wrapper hud-wrapper">
+      
+      <!-- Main Heading & Quote -->
+      <div class="hud-header-row">
+        <div class="hud-header-left reveal reveal-left">
+          <h2 class="hud-title">SKILL MATRIX <span class="hud-crosshair">⌖</span></h2>
+          <p class="hud-desc">CORE COMPETENCIES & TECHNICAL EXPERTISE</p>
+        </div>
+        
+        <div class="hud-quote-panel reveal reveal-right">
+          <span class="hud-quote-mark">“</span>
+          <p class="hud-quote-text">THE BEST WAY TO PREDICT THE FUTURE IS TO BUILD IT.</p>
+          <p class="hud-quote-author">— ALAN KAY</p>
+        </div>
+      </div>
+
+      <!-- Main Panels -->
+      <div class="hud-panels-container">
+        
+        <!-- Panel 01: Communication -->
+        <div class="hud-panel hud-panel-1 reveal reveal-bottom">
+          <div class="hud-panel-header">
+            <h3 class="hud-panel-title"><span class="hud-icon">💬</span> COMMUNICATION</h3>
+            <span class="hud-panel-num">01</span>
+          </div>
+          <div class="hud-panel-content comm-list">
+            
+            <div class="hud-card comm-card">
+              <div class="comm-top">
+                <div class="comm-info">
+                  <img src="https://flagcdn.com/w40/gb.png" alt="English" class="comm-flag">
+                  <div class="comm-text">
+                    <h4>ENGLISH</h4>
+                    <span class="comm-lvl">FLUENT</span>
+                  </div>
+                </div>
+                <span class="comm-pct">95%</span>
+              </div>
+              <div class="hud-progress-track"><div class="hud-progress-fill" style="width: 95%;"></div></div>
+            </div>
+
+            <div class="hud-card comm-card">
+              <div class="comm-top">
+                <div class="comm-info">
+                  <img src="https://flagcdn.com/w40/pk.png" alt="Urdu" class="comm-flag">
+                  <div class="comm-text">
+                    <h4>URDU</h4>
+                    <span class="comm-lvl">NATIVE</span>
+                  </div>
+                </div>
+                <span class="comm-pct">100%</span>
+              </div>
+              <div class="hud-progress-track"><div class="hud-progress-fill" style="width: 100%;"></div></div>
+            </div>
+
+            <div class="hud-card comm-card">
+              <div class="comm-top">
+                <div class="comm-info">
+                  <img src="https://flagcdn.com/w40/pk.png" alt="Punjabi" class="comm-flag">
+                  <div class="comm-text">
+                    <h4>PUNJABI</h4>
+                    <span class="comm-lvl">NATIVE</span>
+                  </div>
+                </div>
+                <span class="comm-pct">100%</span>
+              </div>
+              <div class="hud-progress-track"><div class="hud-progress-fill" style="width: 100%;"></div></div>
+            </div>
+
+            <div class="hud-card comm-card">
+              <div class="comm-top">
+                <div class="comm-info">
+                  <img src="https://flagcdn.com/w40/in.png" alt="Hindi" class="comm-flag">
+                  <div class="comm-text">
+                    <h4>HINDI</h4>
+                    <span class="comm-lvl">PROFESSIONAL</span>
+                  </div>
+                </div>
+                <span class="comm-pct">80%</span>
+              </div>
+              <div class="hud-progress-track"><div class="hud-progress-fill" style="width: 80%;"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Panel 02: Compute -->
+        <div class="hud-panel hud-panel-2 reveal reveal-bottom" style="transition-delay: 0.1s;">
+          <div class="hud-panel-header">
+            <h3 class="hud-panel-title"><span class="hud-icon">&lt;/&gt;</span> COMPUTE</h3>
+            <span class="hud-panel-num">02</span>
+          </div>
+          <div class="hud-panel-content compute-grid">
+            
+            <div class="hud-card compute-card">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
+              <div class="compute-info">
+                <h4>PYTHON</h4>
+                <p>AI • ML • AUTOMATION<br>DATA SCIENCE</p>
+                <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span> <span class="pct">95%</span></div>
+              </div>
+            </div>
+
+            <div class="hud-card compute-card">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++">
+              <div class="compute-info">
+                <h4>C++</h4>
+                <p>SYSTEMS • DSA<br>PERFORMANCE</p>
+                <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">85%</span></div>
+              </div>
+            </div>
+
+            <div class="hud-card compute-card">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java">
+              <div class="compute-info">
+                <h4>JAVA</h4>
+                <p>OOP • BACKEND<br>APPLICATIONS</p>
+                <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">80%</span></div>
+              </div>
+            </div>
+
+            <div class="hud-card compute-card">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">
+              <div class="compute-info">
+                <h4>JAVASCRIPT</h4>
+                <p>FRONTEND<br>DEVELOPMENT</p>
+                <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">85%</span></div>
+              </div>
+            </div>
+
+            <div class="hud-card compute-card">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" alt="C">
+              <div class="compute-info">
+                <h4>C</h4>
+                <p>SYSTEM PROGRAMMING<br>LOW LEVEL</p>
+                <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span> <span class="pct">75%</span></div>
+              </div>
+            </div>
+
+            <div class="hud-card compute-card">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS">
+              <div class="compute-info">
+                <h4>CSS</h4>
+                <p>STYLING<br>DESIGN SYSTEMS</p>
+                <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">80%</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Panel 03: Productivity -->
+        <div class="hud-panel hud-panel-3 reveal reveal-bottom" style="transition-delay: 0.2s;">
+          <div class="hud-panel-header">
+            <h3 class="hud-panel-title"><span class="hud-icon">💼</span> PRODUCTIVITY & DESIGN</h3>
+            <span class="hud-panel-num">03</span>
+          </div>
+          <div class="hud-panel-content prod-list">
+            
+            <div class="hud-row-card">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M4.9 2v20h14.2V2H4.9zM15 17h-2l-1.5-5-1.5 5H8l-2.5-7h2l1.5 5 1.5-5h2l1.5 5 1.5-5h2l-2.5 7z"/></svg>
+              <div class="prod-info">
+                <h4>MICROSOFT WORD</h4>
+                <p>DOCUMENTATION • FORMATTING</p>
+              </div>
+              <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span> <span class="pct">90%</span></div>
+            </div>
+
+            <div class="hud-row-card">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M4.9 2v20h14.2V2H4.9zm4.2 15h-2l2-3-2-3h2l1 1.5 1-1.5h2l-2 3 2 3h-2l-1-1.5-1 1.5z"/></svg>
+              <div class="prod-info">
+                <h4>MICROSOFT EXCEL</h4>
+                <p>DATA ANALYSIS • DASHBOARDS</p>
+              </div>
+              <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">85%</span></div>
+            </div>
+
+            <div class="hud-row-card">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M4.9 2v20h14.2V2H4.9zm4.1 5h4c2 0 3 1 3 2.5s-1 2.5-3 2.5H11v4H9V7zm2 3.5h1.5c.8 0 1-.3 1-1s-.2-1-1-1H11v2z"/></svg>
+              <div class="prod-info">
+                <h4>MICROSOFT POWERPOINT</h4>
+                <p>PRESENTATIONS • VISUALS</p>
+              </div>
+              <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span> <span class="pct">90%</span></div>
+            </div>
+
+            <div class="hud-row-card">
+              <img src="https://cdn.simpleicons.org/googledocs/white" alt="Google Docs">
+              <div class="prod-info">
+                <h4>GOOGLE DOCS</h4>
+                <p>COLLABORATION • DOCUMENTS</p>
+              </div>
+              <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">85%</span></div>
+            </div>
+
+            <div class="hud-row-card">
+              <img src="https://cdn.simpleicons.org/googlesheets/white" alt="Google Sheets">
+              <div class="prod-info">
+                <h4>GOOGLE SHEETS</h4>
+                <p>SPREADSHEETS • ANALYSIS</p>
+              </div>
+              <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">85%</span></div>
+            </div>
+
+            <div class="hud-row-card">
+              <img src="https://cdn.simpleicons.org/googleslides/white" alt="Google Slides">
+              <div class="prod-info">
+                <h4>GOOGLE SLIDES</h4>
+                <p>PRESENTATIONS • SLIDES</p>
+              </div>
+              <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span><span class="dot"></span> <span class="pct">80%</span></div>
+            </div>
+
+            <div class="hud-row-card">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+              <div class="prod-info">
+                <h4>CANVA</h4>
+                <p>DESIGN • SOCIAL MEDIA • BRANDING</p>
+              </div>
+              <div class="hud-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span><span class="dot"></span> <span class="pct">90%</span></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Sections -->
+      <div class="hud-bottom-row reveal reveal-bottom" style="transition-delay: 0.3s;">
+        
+        <div class="hud-panel hud-tech-stack">
+          <div class="hud-panel-header">
+            <h3 class="hud-panel-title"><span class="hud-icon">📦</span> TECH STACK HIGHLIGHTS</h3>
+          </div>
+          <div class="tech-marquee">
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"> <span>Python</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"> <span>TensorFlow</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg" alt="OpenCV"> <span>OpenCV</span></div>
+            <div class="tech-item"><span class="hud-text-logo">YOLO</span> <span>YOLOv11</span></div>
+            <div class="tech-item"><span class="hud-text-logo">n8n</span> <span>n8n</span></div>
+            <div class="tech-item"><span class="hud-text-logo">🦜🔗</span> <span>LangChain</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="Flask" class="invert-dark"> <span>Flask</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-original.svg" alt="Streamlit"> <span>Streamlit</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"> <span>MySQL</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB"> <span>MongoDB</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"> <span>Git</span></div>
+            <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker"> <span>Docker</span></div>
+          </div>
+        </div>
+
+        <div class="hud-stats-grid">
+          <div class="hud-stat-card">
+            <span class="stat-icon">📂</span>
+            <div class="stat-val-wrap"><h3 class="stat-num counter" data-target="13">0</h3></div>
+            <p>PROJECTS<br>COMPLETED</p>
+          </div>
+          <div class="hud-stat-card">
+            <span class="stat-icon">💼</span>
+            <div class="stat-val-wrap"><h3 class="stat-num counter" data-target="10" data-plus="true">0</h3></div>
+            <p>TECHNOLOGIES<br>WORKED WITH</p>
+          </div>
+          <div class="hud-stat-card">
+            <span class="stat-icon">🏅</span>
+            <div class="stat-val-wrap"><h3 class="stat-num counter" data-target="12">0</h3></div>
+            <p>CERTIFICATES<br>EARNED</p>
+          </div>
+          <div class="hud-stat-card">
+            <span class="stat-icon">🕒</span>
+            <div class="stat-val-wrap"><h3 class="stat-num counter" data-target="2">0</h3></div>
+            <p>YEARS<br>LEARNING</p>
+          </div>
+          <div class="hud-stat-card">
+            <span class="stat-icon">⚡</span>
+            <div class="stat-val-wrap"><h3 class="stat-num">∞</h3></div>
+            <p>PASSION FOR<br>INNOVATION</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ ARCHIVE (CERTIFICATES) ============ -->
+  <section id="archive" class="screen archive">
+    <div class="archive__head">
+      <h2 class="section-title">THE ARCHIVE <span class="section-title__year">CERTIFICATES / CREDENTIALS</span></h2>
+    </div>
+
+    <!-- 3D Gallery -->
+    <div class="archive-gallery-container" id="cert-gallery">
+      <div class="gallery-wall">
+        <div class="cert-frame cert-left-3" data-cert="0">
+          <img src="https://picsum.photos/seed/cert0/800/600" alt="Certificate 0">
+        </div>
+        <div class="cert-frame cert-left-2" data-cert="1">
+          <img src="https://picsum.photos/seed/cert1/800/600" alt="Certificate 1">
+        </div>
+        <div class="cert-frame cert-left-1" data-cert="2">
+          <img src="https://picsum.photos/seed/cert2/800/600" alt="Certificate 2">
+        </div>
+        <div class="cert-frame cert-center" data-cert="3">
+          <img src="https://picsum.photos/seed/cert3/800/600" alt="Certificate 3">
+        </div>
+        <div class="cert-frame cert-right-1" data-cert="4">
+          <img src="https://picsum.photos/seed/cert4/800/600" alt="Certificate 4">
+        </div>
+        <div class="cert-frame cert-right-2" data-cert="5">
+          <img src="https://picsum.photos/seed/cert5/800/600" alt="Certificate 5">
+        </div>
+        <div class="cert-frame cert-right-3" data-cert="6">
+          <img src="https://picsum.photos/seed/cert6/800/600" alt="Certificate 6">
+        </div>
+      </div>
+      
+      <!-- Character Asset -->
+      <img src="images/gallery.png" alt="Ehtisham viewing gallery" class="gallery-character">
+    </div>
+
+    <!-- Selected Certificate Overlay (Hidden by default) -->
+    <div class="cert-overlay">
+      <button class="cert-close" aria-label="Close certificate viewer">&times;</button>
+      <div class="cert-zoom-container"></div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="screen projects">
+    <div class="projects__head">
+      <h2 class="section-title">RECAP PROJECTS <span class="section-title__year">2024&ndash;25</span></h2>
+      <p class="projects__note">NO. 7 &middot; SELECTED WORK</p>
+    </div>
+
+    <div class="collage" id="collage">
+      <!-- Project tiles injected structurally below. Each tile is a placeholder —
+           see /images/projects/README.txt to swap in real screenshots. -->
+
+      <a href="#" class="tile tile--wide" data-project="groqtalk" target="_blank">
+        <span class="tile__placeholder-tag">PLACEHOLDER</span>
+        <img src="https://picsum.photos/seed/groqtalk-ehtisham/1000/650" alt="GroqTalk Pro placeholder screenshot" loading="lazy">
+        <div class="tile__info">
+          <h3>GroqTalk Pro</h3>
+          <p>Multi‑agent, web‑augmented AI chat system</p>
+          <span class="tile__stack">Groq LPU &middot; LLaMA 3.3‑70B &middot; n8n &middot; SerpAPI</span>
+        </div>
+      </a>
+
+      <a href="#" class="tile" data-project="braintumor" target="_blank">
+        <span class="tile__placeholder-tag">PLACEHOLDER</span>
+        <img src="https://picsum.photos/seed/braintumor-ehtisham/700/700" alt="Brain Tumor Detection placeholder screenshot" loading="lazy">
+        <div class="tile__info">
+          <h3>Brain Tumor Detection</h3>
+          <p>95%+ accuracy MRI detection pipeline</p>
+          <span class="tile__stack">YOLOv11 &middot; SAM2 &middot; Streamlit</span>
+        </div>
+      </a>
+
+      <a href="#" class="tile tile--mono" aria-hidden="true" target="_blank">
+        <div class="tile__monogram">EH</div>
+      </a>
+
+      <a href="#" class="tile" data-project="smartpost" target="_blank">
+        <span class="tile__placeholder-tag">PLACEHOLDER</span>
+        <img src="https://picsum.photos/seed/smartpost-ehtisham/700/700" alt="SmartPost AI placeholder screenshot" loading="lazy">
+        <div class="tile__info">
+          <h3>SmartPost AI</h3>
+          <p>Automated multi‑platform content generation</p>
+          <span class="tile__stack">n8n &middot; LLM APIs &middot; Social Integrations</span>
+        </div>
+      </a>
+
+      <a href="#" class="tile" data-project="salesmachine" target="_blank">
+        <span class="tile__placeholder-tag">PLACEHOLDER</span>
+        <img src="https://picsum.photos/seed/salesmachine-ehtisham/700/700" alt="Autonomous Sales Machine placeholder screenshot" loading="lazy">
+        <div class="tile__info">
+          <h3>Autonomous Sales Machine</h3>
+          <p>AI‑powered lead outreach &amp; automation</p>
+          <span class="tile__stack">n8n &middot; RAG &middot; CRM Integrations</span>
+        </div>
+      </a>
+
+      <a href="#" class="tile tile--wide" data-project="sysspy" target="_blank">
+        <span class="tile__placeholder-tag">PLACEHOLDER</span>
+        <img src="https://picsum.photos/seed/sysspy-ehtisham/1000/650" alt="SysSpy placeholder screenshot" loading="lazy">
+        <div class="tile__info">
+          <h3>SysSpy</h3>
+          <p>OS intelligence &amp; system call analyzer</p>
+          <span class="tile__stack">C / Python &middot; Process Monitoring</span>
+        </div>
+      </a>
+
+      <a href="#" class="tile" data-project="hostel" target="_blank">
+        <span class="tile__placeholder-tag">PLACEHOLDER</span>
+        <img src="https://picsum.photos/seed/hostel-ehtisham/700/700" alt="Hostel Management System placeholder screenshot" loading="lazy">
+        <div class="tile__info">
+          <h3>Hostel Management System</h3>
+          <p>8‑table relational database + CRUD</p>
+          <span class="tile__stack">MySQL &middot; PHP</span>
+        </div>
+      </a>
+
+      <a href="#" class="tile" data-project="gasleak" target="_blank">
+        <span class="tile__placeholder-tag">PLACEHOLDER</span>
+        <img src="https://picsum.photos/seed/gasleak-ehtisham/700/700" alt="Gas Leakage Detection placeholder screenshot" loading="lazy">
+        <div class="tile__info">
+          <h3>Gas Leakage Detection</h3>
+          <p>Real‑time IoT safety prototype</p>
+          <span class="tile__stack">Arduino &middot; C++ &middot; MQ Sensors</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="screen contact-finale">
+    
+    <div class="finale-container">
+      
+      <!-- Left Column: Profile, Socials, and Projects -->
+      <div class="finale-left">
+        
+        <h3 class="finale-heading gs-fade">CONTACT ME</h3>
+        
+        <div class="finale-portrait-wrapper gs-scale">
+          <img src="images/ehtisham-cutout.png" alt="Ehtisham Ul Haq" class="finale-portrait">
+          
+          <!-- Socials for radial layout -->
+          <a href="#" class="finale-social finale-social-1" aria-label="Twitter">
+            <span class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span> <span class="social-text">ehtishams71</span>
+          </a>
+          <a href="#" class="finale-social finale-social-2" aria-label="Github">
+            <span class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></span> <span class="social-text">ehtisham_ai</span>
+          </a>
+          <a href="#" class="finale-social finale-social-3" aria-label="LinkedIn">
+            <span class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.17 1 12 1 12s0 3.83.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.83 23 12 23 12s0-3.83-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></span> <span class="social-text">Ehtisham AI</span>
+          </a>
+          <a href="#" class="finale-social finale-social-4" aria-label="Contact">
+            <span class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></span> <span class="social-text">EHTISHAM UL HAQ</span>
+          </a>
+        </div>
+        
+        <p class="finale-name gs-fade">EHTISHAM UL HAQ<br><span>21</span></p>
+
+        <!-- Projects moved up to fill negative space -->
+        <div class="finale-projects gs-slide-up">
+           <a href="#" class="finale-project" target="_blank">
+             <div class="finale-project__bg"></div>
+             <div class="finale-project__info">
+               <h4>GROQTALK PRO.</h4>
+               <span>AI / MULTI-AGENT</span>
+             </div>
+             <span class="finale-year">2026</span>
+           </a>
+           <a href="#" class="finale-project finale-project--light" target="_blank">
+             <div class="finale-project__bg light-bg"></div>
+             <div class="finale-project__info">
+               <h4>BRAIN TUMOR</h4>
+               <span>YOLOV11 / CV</span>
+             </div>
+             <span class="finale-year">2025</span>
+           </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Thank you text -->
+      <div class="finale-right gs-slide-left">
+        <h2>THANK YOU</h2>
+        <h1>2026</h1>
+      </div>
+
+    </div>
+
+    <!-- Bottom Right Decor Element -->
+    <img src="images/decor.png" alt="" class="finale-decor gs-decor">
+
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="script.js?v=3"></script>
+</body>
+</html>
