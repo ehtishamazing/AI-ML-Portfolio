@@ -690,6 +690,32 @@ a:focus-visible, button:focus-visible{
   pointer-events: none;
 }
 
+.profile__hollow-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 115%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 3px solid rgba(220, 20, 40, 0.8);
+  box-shadow: 0 0 50px rgba(220, 20, 40, 0.6), inset 0 0 30px rgba(220, 20, 40, 0.4);
+  z-index: 2;
+  pointer-events: none;
+}
+.profile__hollow-circle::after {
+  content: '';
+  position: absolute;
+  top: -15px; left: -15px; right: -15px; bottom: -15px;
+  border-radius: 50%;
+  border: 2px dashed rgba(220, 20, 40, 0.5);
+  animation: rotateSpin 25s linear infinite;
+}
+@keyframes rotateSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .profile__img {
   width: 100%;
   height: auto;
@@ -1657,10 +1683,17 @@ a:focus-visible, button:focus-visible{
   transform: translateY(20px);
   opacity: 0;
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+  z-index: 11;
+  pointer-events: none;
 }
 .tile:hover .tile__info {
   transform: translateY(0);
   opacity: 1;
+}
+.tile__main-link {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
 }
 .tile__info h3{
   font-family:var(--font-head);
@@ -1675,6 +1708,21 @@ a:focus-visible, button:focus-visible{
   color:var(--gray);
   margin-top:2px;
   max-width:34ch;
+  position: relative;
+  z-index: 12;
+  pointer-events: none;
+}
+.demo-link {
+  pointer-events: auto;
+  color: var(--burgundy-glow);
+  text-decoration: underline;
+  margin-left: 5px;
+  display: inline-block;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+.demo-link:hover {
+  color: var(--white);
 }
 .tile__stack{
   display:block;
@@ -1769,7 +1817,7 @@ a:focus-visible, button:focus-visible{
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;
   text-decoration: none;
   color: var(--white);
   /* Starting position for GSAP to animate *from* */
@@ -1798,8 +1846,16 @@ a:focus-visible, button:focus-visible{
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0; /* Will fade in during GSAP timeline */
+  opacity: 0 !important;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 0.4s var(--ease-premium), max-width 0.4s var(--ease-premium), padding 0.4s var(--ease-premium);
   white-space: nowrap;
+}
+.finale-social:hover .social-text {
+  opacity: 1 !important;
+  max-width: 250px;
+  padding-left: 12px;
 }
 
 /* --- Projects (Moved up) --- */

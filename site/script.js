@@ -522,6 +522,15 @@
         projectsSection.addEventListener("mouseleave", function() {
           cursor.classList.remove("active");
         });
+
+        document.querySelectorAll('.demo-link').forEach(function(link) {
+          link.addEventListener('mouseenter', function() {
+            cursor.classList.remove('active');
+          });
+          link.addEventListener('mouseleave', function() {
+            cursor.classList.add('active');
+          });
+        });
       }
 
       // 2. Staggered Entrance
