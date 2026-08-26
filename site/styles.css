@@ -485,13 +485,15 @@ a:focus-visible, button:focus-visible{
   }
   
   .hero-year-wrap {
-    bottom: 20%;
-    right: 5%;
+    bottom: 15%;
+    left: 5%;
+    right: auto;
   }
 
   .hero-ui {
     left: 5%;
-    bottom: 20%;
+    top: 15%;
+    bottom: auto;
   }
 
   .hero__designation {
@@ -500,11 +502,11 @@ a:focus-visible, button:focus-visible{
 
   .hero__menu {
     top: auto;
-    bottom: 10%;
+    bottom: 15%;
     right: 5%;
     flex-direction: column;
     align-items: flex-end;
-    gap: 12px;
+    gap: 10px;
   }
   
   .hero__menu-item {
@@ -525,7 +527,7 @@ a:focus-visible, button:focus-visible{
 
   /* Profile Section */
   .profile__layout {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     padding: 100px 20px 40px;
     gap: 40px;
   }
@@ -547,6 +549,17 @@ a:focus-visible, button:focus-visible{
   }
 
   .profile__cols {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Services Grid */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* HUD Panels (Skill Matrix) */
+  .hud-panels-container {
     grid-template-columns: 1fr;
     gap: 20px;
   }
