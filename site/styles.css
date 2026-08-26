@@ -464,6 +464,13 @@ a:focus-visible, button:focus-visible{
   .tabnav {
     padding: 20px;
   }
+
+  /* Disable scroll reveals on mobile for stability */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
   .tabnav__mark {
     font-size: 32px;
   }
@@ -540,7 +547,8 @@ a:focus-visible, button:focus-visible{
   }
 
   .profile__portrait-container {
-    height: 400px;
+    height: auto;
+    margin-top: 0;
   }
 
   .profile__right {
