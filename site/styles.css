@@ -2032,6 +2032,7 @@ a:focus-visible, button:focus-visible{
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
+  text-decoration: none !important;
 }
 
 .finale-project__bg {
@@ -2082,6 +2083,7 @@ a:focus-visible, button:focus-visible{
   font-size: 11px;
   color: var(--gray-dim);
   text-align: right;
+  text-decoration: none;
 }
 
 /* --- Right Area (Thanks) --- */
