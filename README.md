@@ -3,7 +3,7 @@
 A premium, cinematic, single-page portfolio built with a custom dark editorial design system to showcase expertise in Agentic AI, Machine Learning, Computer Vision, and Full Stack Development.
 
 ## 🚀 Live Demo
-*(Insert link to the deployed portfolio if available, e.g., GitHub Pages or Vercel)*
+*(https://ai-ml-portfolio-xi.vercel.app/)*
 
 ## ✨ Key Features
 - **Cinematic Hero Intro:** Features layered typography, immersive particle animations, and a seamless video-to-image character transition.
