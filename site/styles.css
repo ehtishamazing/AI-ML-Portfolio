@@ -880,7 +880,7 @@ a:focus-visible, button:focus-visible{
   position: relative;
   background: var(--hud-bg-dark);
   color: var(--hud-text);
-  padding: 65px 0 40px 0; /* Reduced to fit 100vh */
+  padding: 100px 0 40px 0; /* Increased top padding to clear fixed tabnav */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -1408,6 +1408,157 @@ a:focus-visible, button:focus-visible{
 }
 
 /* ===========================================================
+   SERVICES
+   =========================================================== */
+
+.services {
+  background: var(--bg);
+  /* Inherit top padding, slightly reduce bottom if needed */
+  padding-bottom: 40px;
+}
+
+.services .projects__head {
+  max-width: 1200px;
+  margin: 0 auto 20px auto; /* Reduced from 40px */
+  width: 100%;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; /* Reduced from 30px */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: rgba(9, 21, 35, 0.4);
+  border: 1px solid rgba(66, 217, 255, 0.15);
+  border-radius: 12px;
+  padding: 25px 35px; /* Reduced vertical padding */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Reduced from 20px */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(66, 217, 255, 0.1), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--hud-cyan);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(66, 217, 255, 0.1), 0 0 20px rgba(66, 217, 255, 0.2);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.svc-icon {
+  width: 45px; /* Slightly reduced */
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid rgba(66, 217, 255, 0.2);
+  transition: all 0.4s ease;
+}
+
+.service-card:hover .svc-icon {
+  border-color: var(--hud-cyan);
+  box-shadow: 0 0 15px rgba(66, 217, 255, 0.3);
+  background: rgba(66, 217, 255, 0.05);
+}
+
+@keyframes slowFloat {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+
+.svc-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: slowFloat 4s ease-in-out infinite;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover .svc-icon img {
+  transform: scale(1.15) rotate(5deg);
+  animation-play-state: paused;
+}
+
+.svc-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.svc-content h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.svc-content p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.svc-tags span {
+  font-family: var(--font-head);
+  font-size: 10px;
+  padding: 4px 10px;
+  background: rgba(66, 217, 255, 0.05);
+  border: 1px solid rgba(66, 217, 255, 0.2);
+  color: var(--hud-cyan);
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+}
+
+/* ===========================================================
    ARCHIVE (CERTIFICATES) 3D GALLERY
    =========================================================== */
 
@@ -1624,9 +1775,11 @@ a:focus-visible, button:focus-visible{
   justify-content:space-between;
   flex-wrap:wrap;
   gap:10px;
-  margin-bottom:28px;
   border-bottom:1px solid var(--line);
   padding-bottom:18px;
+  max-width: 1200px;
+  margin: 0 auto 28px auto;
+  width: 100%;
 }
 .projects__note{
   font-family:var(--font-head);
@@ -1640,6 +1793,9 @@ a:focus-visible, button:focus-visible{
   grid-template-columns:repeat(4, 1fr);
   grid-auto-rows:190px;
   gap:10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .tile{
