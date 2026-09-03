@@ -352,9 +352,9 @@
       var currentTz = -600;
 
       function updateGalleryZ() {
-        if (window.innerWidth <= 480) currentTz = -300;
-        else if (window.innerWidth <= 768) currentTz = -400;
-        else currentTz = -600;
+        if (window.innerWidth <= 480) currentTz = -220;
+        else if (window.innerWidth <= 768) currentTz = -300;
+        else currentTz = -450;
       }
       updateGalleryZ();
       window.addEventListener('resize', updateGalleryZ);

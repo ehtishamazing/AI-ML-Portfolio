@@ -1628,7 +1628,7 @@ a:focus-visible, button:focus-visible{
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateZ(-800px) rotateY(0deg); /* Base starting point for the carousel */
+  transform: translateZ(-450px) rotateY(0deg); /* Base starting point for the carousel */
   will-change: transform;
 }
 
@@ -1649,7 +1649,7 @@ a:focus-visible, button:focus-visible{
   
   /* CSS Variables for composition */
   --rotY: 0deg;
-  --transZ: 600px;
+  --transZ: 450px;
   --transY: -120px;
   --scale: 1;
   transform: translateY(var(--transY)) rotateY(var(--rotY)) translateZ(var(--transZ)) scale(var(--scale));
@@ -1687,10 +1687,11 @@ a:focus-visible, button:focus-visible{
   position: absolute;
   bottom: -50px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-53%);
   height: 85%;
   z-index: 20; /* Stands in front of the certificates */
   pointer-events: none; /* Let clicks pass through to certificates */
+  filter: drop-shadow(0 -10px 40px rgba(0,0,0,0.9));
 }
 
 /* Selected Certificate Overlay */
