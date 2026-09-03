@@ -1685,9 +1685,9 @@ a:focus-visible, button:focus-visible{
 /* Character Asset */
 .gallery-character {
   position: absolute;
-  bottom: -50px;
+  bottom: -30px;
   left: 50%;
-  transform: translateX(calc(-50% - 190px));
+  transform: translateX(calc(-50% + 45px));
   height: 85%;
   z-index: 20; /* Stands in front of the certificates */
   pointer-events: none; /* Let clicks pass through to certificates */
