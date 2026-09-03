@@ -313,32 +313,34 @@
     // GSAP ARCHIVE / CERTIFICATES
     // ==========================================
     if (typeof ScrollTrigger !== 'undefined') {
-      // 1. Entrance animation
-      gsap.set(".cert-frame", { opacity: 0, y: 100 });
-      gsap.set(".gallery-character", { opacity: 0, y: 50 });
+      // 1. Entrance animation (opacity-only so CSS 3D transforms are untouched)
+      gsap.fromTo(".cert-frame", 
+        { opacity: 0 }, 
+        {
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#archive",
+            start: "top 60%",
+          }
+        }
+      );
       
-      gsap.to(".cert-frame", {
-        scrollTrigger: {
-          trigger: "#archive",
-          start: "top 60%",
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: 0.1,
-        ease: "power3.out"
-      });
-      
-      gsap.to(".gallery-character", {
-        scrollTrigger: {
-          trigger: "#archive",
-          start: "top 40%",
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1.5,
-        ease: "power3.out"
-      });
+      gsap.fromTo(".gallery-character", 
+        { opacity: 0, y: 50 }, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#archive",
+            start: "top 40%",
+          }
+        }
+      );
 
       // 2. Interactive Infinite Carousel
       var galleryWall = document.querySelector('.gallery-wall');
@@ -346,14 +348,38 @@
       var targetRotation = 0;
       var isDragging = false;
       var startX = 0;
+      var selectedCert = null;
+      var currentTz = -600;
+
+      function updateGalleryZ() {
+        if (window.innerWidth <= 480) currentTz = -300;
+        else if (window.innerWidth <= 768) currentTz = -400;
+        else currentTz = -600;
+      }
+      updateGalleryZ();
+      window.addEventListener('resize', updateGalleryZ);
       
       // Update loop for smooth rotation
+      var lastRotation = null;
+      var lastTz = null;
+      
       function updateRotation() {
-        // Smoothly interpolate current to target
-        currentRotation += (targetRotation - currentRotation) * 0.1;
-        if (galleryWall) {
-          galleryWall.style.transform = `translateZ(-800px) rotateY(${currentRotation}deg)`;
+        var diff = targetRotation - currentRotation;
+        
+        // Snap to target if very close to stop micro-calculations
+        if (Math.abs(diff) > 0.01) {
+          currentRotation += diff * 0.1;
+        } else {
+          currentRotation = targetRotation;
         }
+
+        // Only trigger layout/paint if values actually changed
+        if (galleryWall && (currentRotation !== lastRotation || currentTz !== lastTz)) {
+          galleryWall.style.transform = 'translateZ(' + currentTz + 'px) rotateY(' + currentRotation + 'deg)';
+          lastRotation = currentRotation;
+          lastTz = currentTz;
+        }
+        
         requestAnimationFrame(updateRotation);
       }
       requestAnimationFrame(updateRotation);
@@ -362,76 +388,228 @@
       var archiveSection = document.getElementById('archive');
       if (archiveSection) {
         archiveSection.addEventListener('wheel', function(e) {
-          // If a certificate is selected, prevent scrolling the carousel
           if (selectedCert) return;
-          
-          // Prevent default vertical scroll while interacting with gallery if hovered over the gallery container
-          // Actually, let's just use horizontal scrolling or track vertical scroll to rotate
           if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
             targetRotation -= e.deltaX * 0.1;
             e.preventDefault();
-          } else {
-            // Also allow vertical scroll to rotate for ease of use
-            // targetRotation -= e.deltaY * 0.1; 
           }
         }, { passive: false });
         
         // Drag logic
         var galleryContainer = document.querySelector('.archive-gallery-container');
-        galleryContainer.addEventListener('mousedown', function(e) {
-          if (selectedCert) return;
-          isDragging = true;
-          startX = e.clientX;
-          galleryContainer.style.cursor = 'grabbing';
-        });
-        
-        window.addEventListener('mouseup', function() {
-          isDragging = false;
-          galleryContainer.style.cursor = 'default';
-        });
-        
-        window.addEventListener('mousemove', function(e) {
-          if (!isDragging || selectedCert) return;
-          var deltaX = e.clientX - startX;
-          targetRotation += deltaX * 0.2;
-          startX = e.clientX;
-        });
+        if (galleryContainer) {
+          galleryContainer.addEventListener('mousedown', function(e) {
+            if (selectedCert) return;
+            isDragging = true;
+            startX = e.clientX;
+            galleryContainer.style.cursor = 'grabbing';
+          });
+          
+          window.addEventListener('mouseup', function() {
+            isDragging = false;
+            if (galleryContainer) galleryContainer.style.cursor = 'default';
+          });
+          
+          window.addEventListener('mousemove', function(e) {
+            if (!isDragging || selectedCert) return;
+            var deltaX = e.clientX - startX;
+            targetRotation += deltaX * 0.2;
+            startX = e.clientX;
+          });
+
+          // Touch support
+          var touchStartX = 0;
+          galleryContainer.addEventListener('touchstart', function(e) {
+            if (selectedCert) return;
+            touchStartX = e.touches[0].clientX;
+          }, { passive: true });
+
+          galleryContainer.addEventListener('touchmove', function(e) {
+            if (selectedCert) return;
+            var touchX = e.touches[0].clientX;
+            var deltaX = touchX - touchStartX;
+            targetRotation += deltaX * 0.25;
+            touchStartX = touchX;
+          }, { passive: true });
+        }
       }
 
-      // 3. Click Interactions
+      // 3. Navigation & Indicators
       var certs = document.querySelectorAll('.cert-frame');
       var overlay = document.querySelector('.cert-overlay');
       var closeBtn = document.querySelector('.cert-close');
-      var selectedCert = null;
+      
+      var btnPrev = document.querySelector('.gallery-nav-prev');
+      var btnNext = document.querySelector('.gallery-nav-next');
+      var indicatorsContainer = document.querySelector('.gallery-indicators');
+      var activeIndex = 0;
+      var total = certs.length;
+      var step = total > 0 ? 360 / total : 45;
 
-      certs.forEach(function(cert, index) {
-        // Assign angles dynamically for infinite scroll matching the CSS
-        // cert-left-3: -90, cert-left-2: -60, cert-left-1: -30, cert-center: 0, cert-right-1: 30, cert-right-2: 60, cert-right-3: 90
-        var angles = [-90, -60, -30, 0, 30, 60, 90];
-        cert.dataset.angle = angles[index];
-        
-        cert.addEventListener('click', function() {
+      // Build indicators
+      if (indicatorsContainer) {
+        for (var i = 0; i < total; i++) {
+          var dot = document.createElement('div');
+          dot.className = 'gallery-indicator' + (i === 0 ? ' is-active' : '');
+          dot.dataset.index = i;
+          indicatorsContainer.appendChild(dot);
+
+          dot.addEventListener('click', function(e) {
+            var idx = parseInt(this.dataset.index);
+            activeIndex = idx;
+            targetRotation = -(idx * step);
+            updateIndicators();
+          });
+        }
+      }
+
+      function updateIndicators() {
+        var dots = document.querySelectorAll('.gallery-indicator');
+        dots.forEach(function(dot, idx) {
+          if (idx === activeIndex) {
+            dot.classList.add('is-active');
+          } else {
+            dot.classList.remove('is-active');
+          }
+        });
+      }
+
+      function rotateToIndex(idx) {
+        if (idx < 0) idx = total - 1;
+        if (idx >= total) idx = 0;
+        activeIndex = idx;
+        targetRotation = -(activeIndex * step);
+        updateIndicators();
+      }
+
+      if (btnPrev) {
+        btnPrev.addEventListener('click', function() {
+          rotateToIndex(activeIndex - 1);
+        });
+      }
+      if (btnNext) {
+        btnNext.addEventListener('click', function() {
+          rotateToIndex(activeIndex + 1);
+        });
+      }
+
+      // Update active index based on drag/scroll rotation
+      function snapToNearest() {
+        var normalizedRot = -targetRotation % 360;
+        if (normalizedRot < 0) normalizedRot += 360;
+        var nearestIdx = Math.round(normalizedRot / step) % total;
+        activeIndex = nearestIdx;
+        updateIndicators();
+      }
+
+      if (archiveSection) {
+        archiveSection.addEventListener('wheel', function(e) {
           if (selectedCert) return;
-          
-          selectedCert = cert;
-          
-          // Auto-rotate the wall to center this certificate
-          targetRotation = -parseInt(cert.dataset.angle);
-          
-          // Dim others
-          certs.forEach(function(c) {
-            if (c !== selectedCert) {
-              c.classList.add('is-dimmed');
+          if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            // After wheel, update nearest index for indicators
+            clearTimeout(window.wheelTimeout);
+            window.wheelTimeout = setTimeout(snapToNearest, 150);
+          }
+        }, { passive: false });
+        
+        if (galleryContainer) {
+          window.addEventListener('mouseup', function() {
+            if (isDragging) {
+               isDragging = false;
+               if (galleryContainer) galleryContainer.style.cursor = 'default';
+               snapToNearest();
             }
           });
-          
-          // Select this one
-          selectedCert.classList.add('is-selected');
-          
-          // Show overlay
-          overlay.classList.add('is-active');
+
+          galleryContainer.addEventListener('touchend', function(e) {
+            if (selectedCert) return;
+            snapToNearest();
+          }, { passive: true });
+        }
+      }
+
+      // 4. Click Interactions (Lightbox)
+      var lbImg = document.querySelector('.lightbox-img');
+      var lbTitle = document.getElementById('lb-title');
+      var lbIssuer = document.getElementById('lb-issuer');
+      var lbSkills = document.getElementById('lb-skills');
+      var lbPdf = document.getElementById('lb-pdf');
+      var lbDl = document.getElementById('lb-dl');
+      var lbCounter = document.getElementById('lb-counter');
+      var lbPrev = document.querySelector('.lb-nav-prev');
+      var lbNext = document.querySelector('.lb-nav-next');
+
+      function openLightbox(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        
+        var cert = certs[index];
+        
+        if (selectedCert === cert) {
+          closeCert();
+          return;
+        }
+        
+        if (selectedCert) {
+          selectedCert.classList.remove('is-selected');
+        }
+        
+        selectedCert = cert;
+        activeIndex = index;
+        
+        // Auto-rotate the wall to center this certificate
+        targetRotation = -parseInt(cert.dataset.angle);
+        updateIndicators();
+        
+        // Dim others
+        certs.forEach(function(c) {
+          if (c !== selectedCert) {
+            c.classList.add('is-dimmed');
+          } else {
+            c.classList.remove('is-dimmed');
+          }
+        });
+        
+        // Select this one
+        selectedCert.classList.add('is-selected');
+
+        // Populate Lightbox
+        if (lbImg) lbImg.src = cert.dataset.img;
+        if (lbTitle) lbTitle.textContent = cert.dataset.title;
+        if (lbIssuer) lbIssuer.textContent = cert.dataset.issuer;
+        if (lbSkills) lbSkills.textContent = cert.dataset.skills;
+        if (lbPdf) lbPdf.href = cert.dataset.pdf;
+        if (lbDl) lbDl.href = cert.dataset.pdf; // Download also uses pdf
+        if (lbCounter) lbCounter.textContent = (index + 1) + ' / ' + total;
+        
+        // Show overlay
+        if (overlay) overlay.classList.add('is-active');
+      }
+
+      certs.forEach(function(cert, index) {
+        var angle = index * step;
+        cert.dataset.angle = angle;
+        cert.style.setProperty('--rotY', angle + 'deg');
+        
+        cert.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openLightbox(index);
         });
       });
+
+      if (lbPrev) {
+        lbPrev.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openLightbox(activeIndex - 1);
+        });
+      }
+
+      if (lbNext) {
+        lbNext.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openLightbox(activeIndex + 1);
+        });
+      }
 
       function closeCert() {
         if (!selectedCert) return;
@@ -443,19 +621,44 @@
         });
         
         // Hide overlay
-        overlay.classList.remove('is-active');
+        if (overlay) overlay.classList.remove('is-active');
         
         selectedCert = null;
       }
 
-      if (closeBtn) closeBtn.addEventListener('click', closeCert);
-      if (overlay) overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closeCert(); // Only close if clicking the background, not the cert itself
-      });
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          closeCert();
+        });
+      }
+
+      if (overlay) {
+        overlay.addEventListener('click', function(e) {
+          // Only close if clicking outside the lightbox content and nav arrows
+          if(e.target === overlay || e.target.classList.contains('cert-zoom-container')) {
+            closeCert();
+          }
+        });
+      }
       
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && selectedCert) {
           closeCert();
+        }
+        
+        if (e.key === 'ArrowRight') {
+          if (selectedCert) {
+             openLightbox(activeIndex + 1);
+          } else {
+             rotateToIndex(activeIndex + 1);
+          }
+        } else if (e.key === 'ArrowLeft') {
+          if (selectedCert) {
+             openLightbox(activeIndex - 1);
+          } else {
+             rotateToIndex(activeIndex - 1);
+          }
         }
       });
     }

@@ -25,6 +25,7 @@ A premium, cinematic, single-page portfolio built with a custom dark editorial d
  ├── index.html       # The main single-page application structure
  ├── styles.css       # Custom design system, HUD components, responsive queries
  ├── script.js        # Scroll observations, GSAP logic, 3D carousel logic
+ ├── /certificates    # Official PDF credentials and high-res image previews
  └── /images          # Project screenshots, character assets, and SVG icons
 ```
 
