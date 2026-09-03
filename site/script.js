@@ -352,9 +352,9 @@
       var currentTz = -600;
 
       function updateGalleryZ() {
-        if (window.innerWidth <= 480) currentTz = -300;
-        else if (window.innerWidth <= 768) currentTz = -400;
-        else currentTz = -600;
+        if (window.innerWidth <= 480) currentTz = -220;
+        else if (window.innerWidth <= 768) currentTz = -300;
+        else currentTz = -450;
       }
       updateGalleryZ();
       window.addEventListener('resize', updateGalleryZ);
@@ -763,6 +763,126 @@
           },
           y: speed,
           ease: "none"
+        });
+      });
+    }
+
+    // ============ PROJECTS LIGHTBOX ============
+    var projectTiles = document.querySelectorAll('.tile[data-project]');
+    var projectOverlay = document.getElementById('project-overlay');
+    if (projectOverlay) {
+      var projCloseBtn = projectOverlay.querySelector('#proj-close');
+      if (projCloseBtn) {
+        projCloseBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          projectOverlay.classList.remove('is-active');
+        });
+      }
+      
+      projectOverlay.addEventListener('click', function(e) {
+        if(e.target === projectOverlay) {
+          projectOverlay.classList.remove('is-active');
+        }
+      });
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && projectOverlay.classList.contains('is-active')) {
+          projectOverlay.classList.remove('is-active');
+        }
+      });
+
+      var projectData = {
+        'salesmachine': `
+          <div class="markdown-body">
+            <h3 style="margin-top:0;">Autonomous AI Sales Machine</h3>
+            <p>An autonomous email pipeline built on n8n that processes inbound leads, scores them, and generates hyper-personalized email replies using LLMs. It monitors the inbox, handles 2-day follow-ups, and surfaces live metrics via an Executive Dashboard.</p>
+            <h3>Core Tech Stack</h3>
+            <ul>
+              <li><strong>Orchestration:</strong> n8n</li>
+              <li><strong>AI Engine:</strong> OpenAI API / Claude</li>
+              <li><strong>Data / Logic:</strong> REST APIs, Webhooks</li>
+            </ul>
+            <div style="margin-top: 40px; display: flex; gap: 15px; flex-wrap: wrap;">
+              <a href="https://github.com/ehtishamazing/N8N-Automations/tree/main/Autonomous%20Sales%20Machine" target="_blank" style="font-family: var(--font-head); letter-spacing: 0.1em; font-size: 14px; border: 1px solid var(--hud-cyan); padding: 12px 24px; border-radius: 4px; border-bottom: 1px solid var(--hud-cyan);">GITHUB REPOSITORY</a>
+              <a href="https://www.youtube.com/watch?v=0h5G29o0Jv8" target="_blank" style="font-family: var(--font-head); letter-spacing: 0.1em; font-size: 14px; border: 1px solid var(--hud-cyan); padding: 12px 24px; border-radius: 4px; border-bottom: 1px solid var(--hud-cyan);">DEMO VIDEO</a>
+            </div>
+          </div>
+        `,
+        'braintumor': `
+          <div class="markdown-body">
+            <h3 style="margin-top:0;">Brain Tumor Detection with YOLO11</h3>
+            <p>A computer vision system utilizing the state-of-the-art YOLO11 object detection model to identify and locate brain tumors in MRI scans. The model achieves high precision by processing medical imagery and drawing localized bounding boxes around anomalies.</p>
+            <h3>Core Tech Stack</h3>
+            <ul>
+              <li><strong>Model:</strong> Ultralytics YOLO11</li>
+              <li><strong>Data Framework:</strong> PyTorch, OpenCV</li>
+              <li><strong>Language:</strong> Python</li>
+            </ul>
+            <div style="margin-top: 40px; display: flex; gap: 15px; flex-wrap: wrap;">
+              <a href="https://github.com/ehtishamazing/Brain-Tumor-Detection-with-YOLO11" target="_blank" style="font-family: var(--font-head); letter-spacing: 0.1em; font-size: 14px; border: 1px solid var(--hud-cyan); padding: 12px 24px; border-radius: 4px; border-bottom: 1px solid var(--hud-cyan);">GITHUB REPOSITORY</a>
+            </div>
+          </div>
+        `,
+        'hostel': `
+          <div class="markdown-body">
+            <h3 style="margin-top:0;">Smart Hostel Management System</h3>
+            <p>A comprehensive management suite for administering hostel records, room allocations, and student data. It features role-based access control, analytics dashboards, and automated record-keeping to streamline administrative workflows.</p>
+            <h3>Core Tech Stack</h3>
+            <ul>
+              <li><strong>Frontend:</strong> React, Tailwind CSS</li>
+              <li><strong>Backend:</strong> Node.js, Express</li>
+              <li><strong>Database:</strong> MongoDB</li>
+            </ul>
+            <div style="margin-top: 40px; display: flex; gap: 15px; flex-wrap: wrap;">
+              <a href="https://github.com/ehtishamazing/Smart-Hostel-Management-System" target="_blank" style="font-family: var(--font-head); letter-spacing: 0.1em; font-size: 14px; border: 1px solid var(--hud-cyan); padding: 12px 24px; border-radius: 4px; border-bottom: 1px solid var(--hud-cyan);">GITHUB REPOSITORY</a>
+            </div>
+          </div>
+        `,
+        'sysspy': `
+          <div class="markdown-body">
+            <h3 style="margin-top:0;">SysSpy - System Surveillance</h3>
+            <p>A lightweight, stealthy system monitoring tool designed to capture and log keystrokes, clipboard activity, and network metrics. Built primarily for security research, auditing, and understanding endpoint vulnerabilities.</p>
+            <h3>Core Tech Stack</h3>
+            <ul>
+              <li><strong>Language:</strong> C++ / Python</li>
+              <li><strong>OS APIs:</strong> Windows API</li>
+              <li><strong>Networking:</strong> Sockets</li>
+            </ul>
+            <div style="margin-top: 40px; display: flex; gap: 15px; flex-wrap: wrap;">
+              <a href="https://github.com/ehtishamazing/SysSpy" target="_blank" style="font-family: var(--font-head); letter-spacing: 0.1em; font-size: 14px; border: 1px solid var(--hud-cyan); padding: 12px 24px; border-radius: 4px; border-bottom: 1px solid var(--hud-cyan);">GITHUB REPOSITORY</a>
+            </div>
+          </div>
+        `,
+        'n8n-automations': `
+          <div class="markdown-body">
+            <h3 style="margin-top:0;">Enterprise Workflow Automations</h3>
+            <p>A collection of robust n8n workflows designed to automate repetitive business processes. Includes integrations between CRMs, communication channels, and AI endpoints to create self-sustaining data pipelines.</p>
+            <h3>Core Tech Stack</h3>
+            <ul>
+              <li><strong>Platform:</strong> n8n</li>
+              <li><strong>Integrations:</strong> Slack, Google Sheets, Gmail</li>
+              <li><strong>Protocols:</strong> REST, Webhooks</li>
+            </ul>
+            <div style="margin-top: 40px; display: flex; gap: 15px; flex-wrap: wrap;">
+              <a href="https://github.com/ehtishamazing/N8N-Automations" target="_blank" style="font-family: var(--font-head); letter-spacing: 0.1em; font-size: 14px; border: 1px solid var(--hud-cyan); padding: 12px 24px; border-radius: 4px; border-bottom: 1px solid var(--hud-cyan);">GITHUB REPOSITORY</a>
+            </div>
+          </div>
+        `
+      };
+
+      projectTiles.forEach(function(tile) {
+        tile.addEventListener('click', function(e) {
+          if (e.target.tagName.toLowerCase() === 'a' && !e.target.classList.contains('tile__main-link')) {
+            return; // let external demo links work
+          }
+          e.preventDefault();
+          
+          var projId = this.dataset.project;
+          if(!projId || !projectData[projId]) return;
+          
+          document.getElementById('proj-title').textContent = this.querySelector('h3').textContent;
+          document.getElementById('proj-body').innerHTML = projectData[projId];
+          projectOverlay.classList.add('is-active');
         });
       });
     }

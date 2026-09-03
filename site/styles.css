@@ -358,12 +358,12 @@ a:focus-visible, button:focus-visible{
 /* UI Layering (AI & ML Engineer) */
 .hero-ui {
   position: absolute;
-  bottom: 25%; /* Raised up to sit right beneath the PORTFOLIO text */
-  left: 16%; /* Exactly aligned with the P of PORTFOLIO (100-68)/2 = 16 */
+  top: calc(50% + 11vw + 20px); /* Bulletproof clearance below the giant letters */
+  left: calc(50% - 34vw); /* Mathematically locked to the left edge of 'P' */
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Ensures text starts exactly at 16% */ 
-  gap: 20px; 
+  align-items: flex-start;
+  gap: 15px; 
   z-index: 20; 
 }
 
@@ -645,18 +645,21 @@ a:focus-visible, button:focus-visible{
    PROFILE
    =========================================================== */
 
-.profile{
-  background:linear-gradient(180deg, #020912 0%, #03101f 100%);
+.profile {
+  background: linear-gradient(180deg, #020912 0%, #03101f 100%);
   padding-top: 120px;
+  display: flex;
+  flex-direction: column;
 }
 
-.profile__layout{
+.profile__layout {
   display: grid;
   grid-template-columns: minmax(300px, 35%) 1fr;
   gap: clamp(40px, 6vw, 100px);
   max-width: 1200px;
   margin: 0 auto;
-  align-items: stretch; /* Allows right column to match height of the left picture */
+  flex-grow: 1; /* Stretches to fill the 100vh container */
+  align-items: stretch; /* Both columns stretch to the bottom of the screen */
 }
 
 /* Left side */
@@ -665,13 +668,14 @@ a:focus-visible, button:focus-visible{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start; /* Ensures content anchors to the top */
 }
 
 .profile__intro {
   text-align: center;
   width: 100%;
-  margin-bottom: 20px;
-  margin-top: 60px;
+  margin-bottom: 40px; /* Safe gap to prevent text overlapping the portrait glow */
+  margin-top: -24px; /* Pulls EHTISHAM UL HAQ perfectly in line with ABOUT ME */
 }
 
 .profile__eyebrow {
@@ -696,7 +700,8 @@ a:focus-visible, button:focus-visible{
   position: relative;
   width: 100%;
   max-width: 380px;
-  margin-top: 20px;
+  margin-top: auto; /* Pushes the portrait to the absolute bottom of the stretched column */
+  margin-bottom: 0;
 }
 
 .profile__glow {
@@ -740,6 +745,7 @@ a:focus-visible, button:focus-visible{
 .profile__img {
   width: 100%;
   height: auto;
+  object-fit: contain;
   display: block;
   position: relative;
   z-index: 3;
@@ -772,8 +778,10 @@ a:focus-visible, button:focus-visible{
 .profile__right {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  padding-top: 100px;
+  justify-content: flex-start; /* Anchors to the top */
+  gap: 32px; 
+  padding-top: 0; 
+  padding-bottom: 0; 
 }
 
 .profile__section {
@@ -843,7 +851,7 @@ a:focus-visible, button:focus-visible{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  margin-top: auto;
+  /* margin-top: auto; REMOVED because it forces extreme top/bottom overflow on full screen */
 }
 
 .edu-entry {
@@ -1620,7 +1628,7 @@ a:focus-visible, button:focus-visible{
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateZ(-800px) rotateY(0deg); /* Base starting point for the carousel */
+  transform: translateZ(-450px) rotateY(0deg); /* Base starting point for the carousel */
   will-change: transform;
 }
 
@@ -1641,7 +1649,7 @@ a:focus-visible, button:focus-visible{
   
   /* CSS Variables for composition */
   --rotY: 0deg;
-  --transZ: 600px;
+  --transZ: 450px;
   --transY: -120px;
   --scale: 1;
   transform: translateY(var(--transY)) rotateY(var(--rotY)) translateZ(var(--transZ)) scale(var(--scale));
@@ -1679,7 +1687,7 @@ a:focus-visible, button:focus-visible{
   position: absolute;
   bottom: -50px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-53%); /* Nudged left by 3% to compensate for PNG transparency offset */
   height: 85%;
   z-index: 20; /* Stands in front of the certificates */
   pointer-events: none; /* Let clicks pass through to certificates */
@@ -1873,8 +1881,8 @@ a:focus-visible, button:focus-visible{
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 40px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 36px;
   cursor: pointer;
   z-index: 1010;
   padding: 20px; /* Keep click area large */
@@ -1891,15 +1899,12 @@ a:focus-visible, button:focus-visible{
   position: absolute;
   top: 20px;
   left: 20px;
-  background: rgba(10, 15, 20, 0.8);
-  color: var(--white);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
   padding: 6px 12px;
-  border-radius: 20px;
   font-family: var(--font-head);
   font-size: 14px;
   letter-spacing: 0.1em;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
   z-index: 10;
 }
 
@@ -1908,24 +1913,21 @@ a:focus-visible, button:focus-visible{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(10, 15, 20, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--white);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 100;
-  backdrop-filter: blur(5px);
+  padding: 15px;
   transition: all 0.3s var(--ease-premium);
 }
 .gallery-nav:hover {
-  background: var(--burgundy-glow);
-  border-color: var(--burgundy-glow);
+  background: transparent;
+  color: var(--white);
   transform: translateY(-50%) scale(1.1);
 }
 .gallery-nav-prev { left: 40px; }
@@ -1995,7 +1997,7 @@ a:focus-visible, button:focus-visible{
 @media (max-width: 768px) {
   .cert-frame {
     width: 260px;
-    --transZ: 400px;
+    --transZ: 300px;
     --transY: -80px;
   }
   .archive-gallery-container {
@@ -2015,7 +2017,7 @@ a:focus-visible, button:focus-visible{
 @media (max-width: 480px) {
   .cert-frame {
     width: 220px;
-    --transZ: 300px;
+    --transZ: 220px;
     --transY: -60px;
   }
   .archive-gallery-container {
@@ -2385,19 +2387,32 @@ a:focus-visible, button:focus-visible{
   padding-right: 10%; /* Move away from edge */
 }
 
-.finale-right h2 {
+.finale-h2 {
   font-family: var(--font-display);
-  font-size: clamp(50px, 9vw, 110px); /* Enlarged */
-  color: var(--gray-dim);
-  line-height: 0.9;
+  font-size: clamp(30px, 5vw, 60px); 
+  color: var(--burgundy);
+  line-height: 1.1;
   text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
-.finale-right h1 {
+.finale-h1 {
   font-family: var(--font-display);
-  font-size: clamp(80px, 15vw, 180px); /* Enlarged */
-  color: var(--gray-dim);
-  line-height: 0.9;
+  font-size: clamp(40px, 8vw, 100px); 
+  color: var(--white);
+  line-height: 1;
+}
+
+.finale-h3 {
+  font-size: 16px;
+  color: var(--gray);
+  margin-top: 20px;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-left: auto; /* Align right to match container */
 }
 
 /* --- Decor PNG (Hollow & Cornered) --- */
@@ -2526,3 +2541,20 @@ a:focus-visible, button:focus-visible{
   /* Profile Mobile */
   .profile__cols { display: flex; flex-direction: column; gap: 30px; }
 }
+
+/* Markdown Styles for Project Case Studies */
+.markdown-body img { max-width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.1); }
+.markdown-body h1, .markdown-body h2, .markdown-body h3 { font-family: var(--font-head); color: var(--white); margin-top: 30px; margin-bottom: 15px; letter-spacing: 0.05em; }
+.markdown-body h1 { font-size: clamp(24px, 4vw, 36px); }
+.markdown-body h2 { font-size: clamp(20px, 3vw, 28px); }
+.markdown-body h3 { font-size: clamp(18px, 2.5vw, 22px); }
+.markdown-body a { color: var(--hud-cyan); text-decoration: none; border-bottom: 1px dashed var(--hud-cyan); transition: opacity 0.3s ease; }
+.markdown-body a:hover { opacity: 0.7; }
+.markdown-body table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px; font-size: 14px; }
+.markdown-body th, .markdown-body td { border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; text-align: left; }
+.markdown-body th { background: rgba(255, 255, 255, 0.05); }
+.markdown-body pre { background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 8px; overflow-x: auto; font-family: monospace; border: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0; }
+.markdown-body code { font-family: monospace; background: rgba(255, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px; }
+.proj-lightbox-content::-webkit-scrollbar { width: 8px; }
+.proj-lightbox-content::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); }
+.proj-lightbox-content::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 4px; }
