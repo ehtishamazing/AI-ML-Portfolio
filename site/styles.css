@@ -1687,7 +1687,7 @@ a:focus-visible, button:focus-visible{
   position: absolute;
   bottom: -50px;
   left: 50%;
-  transform: translateX(-47%);
+  transform: translateX(-53%);
   height: 85%;
   z-index: 20; /* Stands in front of the certificates */
   pointer-events: none; /* Let clicks pass through to certificates */
