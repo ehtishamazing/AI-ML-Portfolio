@@ -329,10 +329,11 @@
       );
       
       gsap.fromTo(".gallery-character", 
-        { opacity: 0, y: 50 }, 
+        { opacity: 0, y: 50, xPercent: -50 }, 
         {
           opacity: 1,
           y: 0,
+          xPercent: -50,
           duration: 1.5,
           ease: "power3.out",
           scrollTrigger: {
@@ -352,9 +353,10 @@
       var currentTz = -600;
 
       function updateGalleryZ() {
-        if (window.innerWidth <= 480) currentTz = -220;
-        else if (window.innerWidth <= 768) currentTz = -300;
-        else currentTz = -450;
+        if (window.innerWidth <= 480) currentTz = -260;
+        else if (window.innerWidth <= 768) currentTz = -360;
+        else if (window.innerWidth <= 1024) currentTz = -460;
+        else currentTz = -580;
       }
       updateGalleryZ();
       window.addEventListener('resize', updateGalleryZ);

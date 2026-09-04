@@ -1594,26 +1594,28 @@ a:focus-visible, button:focus-visible{
 .archive {
   position: relative;
   background: linear-gradient(180deg, #03101f 0%, #010408 100%);
-  padding-top: 60px;
+  padding: clamp(30px, 4vh, 50px) 0 20px 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden; /* Contains the 3D effect */
 }
 
 .archive__head {
-  padding: 0 40px;
-  max-width: 1200px;
-  margin: 0 auto 20px auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  max-width: 1400px;
+  margin: 0 auto clamp(5px, 1.5vh, 15px) auto;
   width: 100%;
+  flex-shrink: 0;
 }
 
 .archive-gallery-container {
   position: relative;
   width: 100%;
-  height: 500px;
-  margin-top: 0px;
-  perspective: 1200px; /* Crucial for 3D depth */
+  flex: 1;
+  min-height: clamp(520px, 68vh, 760px);
+  perspective: 1400px; /* Crucial for 3D depth */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1628,18 +1630,18 @@ a:focus-visible, button:focus-visible{
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateZ(-450px) rotateY(0deg); /* Base starting point for the carousel */
+  transform: translateZ(-580px) rotateY(0deg); /* Base starting point for the carousel */
   will-change: transform;
 }
 
 .cert-frame {
   position: absolute;
-  width: 320px;
+  width: clamp(360px, 25vw, 460px);
   aspect-ratio: 4/3;
   background: rgba(10, 10, 15, 0.85);
-  padding: 12px;
+  padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.85), inset 0 0 20px rgba(0,0,0,0.5);
   cursor: pointer;
   transform-style: preserve-3d;
   backface-visibility: hidden; /* Prevent rear cards from mirroring awkwardly through space */
@@ -1649,8 +1651,8 @@ a:focus-visible, button:focus-visible{
   
   /* CSS Variables for composition */
   --rotY: 0deg;
-  --transZ: 450px;
-  --transY: -120px;
+  --transZ: 580px;
+  --transY: clamp(-150px, -16vh, -110px);
   --scale: 1;
   transform: translateY(var(--transY)) rotateY(var(--rotY)) translateZ(var(--transZ)) scale(var(--scale));
 }
@@ -1685,10 +1687,11 @@ a:focus-visible, button:focus-visible{
 /* Character Asset */
 .gallery-character {
   position: absolute;
-  bottom: -30px;
+  bottom: 0px;
   left: 50%;
-  transform: translateX(calc(-50% + 45px));
-  height: 85%;
+  transform: translateX(-50%);
+  height: clamp(500px, 64vh, 680px);
+  max-height: 88%;
   z-index: 20; /* Stands in front of the certificates */
   pointer-events: none; /* Let clicks pass through to certificates */
   filter: drop-shadow(0 -10px 40px rgba(0,0,0,0.9));
@@ -1911,33 +1914,33 @@ a:focus-visible, button:focus-visible{
 /* Gallery Navigation Arrows & Indicators */
 .gallery-nav {
   position: absolute;
-  top: 50%;
+  top: 42%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   color: rgba(255, 255, 255, 0.4);
-  font-size: 36px;
+  font-size: clamp(40px, 3.5vw, 56px);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 100;
-  padding: 15px;
+  padding: 20px;
   transition: all 0.3s var(--ease-premium);
 }
 .gallery-nav:hover {
   background: transparent;
   color: var(--white);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.15);
 }
-.gallery-nav-prev { left: 40px; }
-.gallery-nav-next { right: 40px; }
+.gallery-nav-prev { left: clamp(15px, 2.5vw, 40px); }
+.gallery-nav-next { right: clamp(15px, 2.5vw, 40px); }
 
 .gallery-indicators {
   position: absolute;
-  bottom: 65px;
+  bottom: 25px;
   left: 50%;
-  transform: translateX(calc(-50% + 45px));
+  transform: translateX(-50%);
   display: flex;
   gap: 12px;
   z-index: 100;
@@ -1956,6 +1959,27 @@ a:focus-visible, button:focus-visible{
 }
 .gallery-indicator:hover {
   background: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 1024px) {
+  .archive {
+    min-height: 100vh;
+    height: auto;
+    padding-top: 50px;
+  }
+  .cert-frame {
+    width: 320px;
+    --transZ: 460px;
+    --transY: -100px;
+  }
+  .archive-gallery-container {
+    min-height: 520px;
+    perspective: 1100px;
+  }
+  .gallery-character {
+    height: 78%;
+    bottom: 0px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1995,18 +2019,21 @@ a:focus-visible, button:focus-visible{
 }
 
 @media (max-width: 768px) {
+  .archive {
+    padding-top: 40px;
+  }
   .cert-frame {
     width: 260px;
-    --transZ: 400px;
-    --transY: -80px;
+    --transZ: 360px;
+    --transY: -70px;
   }
   .archive-gallery-container {
-    height: 480px;
+    min-height: 480px;
     perspective: 900px;
   }
   .gallery-character {
-    height: 70%;
-    bottom: -30px;
+    height: 72%;
+    bottom: 0px;
   }
   .cert-close {
     top: 15px;
@@ -2015,14 +2042,21 @@ a:focus-visible, button:focus-visible{
 }
 
 @media (max-width: 480px) {
+  .archive {
+    padding-top: 30px;
+  }
   .cert-frame {
-    width: 220px;
-    --transZ: 300px;
-    --transY: -60px;
+    width: 210px;
+    --transZ: 260px;
+    --transY: -50px;
   }
   .archive-gallery-container {
-    height: 440px;
+    min-height: 440px;
     perspective: 750px;
+  }
+  .gallery-character {
+    height: 68%;
+    bottom: 0px;
   }
   .lightbox-actions {
     flex-direction: column;
