@@ -2361,8 +2361,8 @@ a:focus-visible, button:focus-visible{
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding: 4px 6px;
-    gap: 4px;
+    padding: 5px 14px;
+    gap: 5px;
     border-radius: 999px;
     background: rgba(8, 14, 22, 0.9);
     backdrop-filter: blur(14px);
@@ -2380,6 +2380,9 @@ a:focus-visible, button:focus-visible{
     flex-shrink: 0;
     min-height: 34px;
     border-radius: 999px;
+  }
+  .tabnav__pills .pill:last-child {
+    margin-right: 8px;
   }
 
   /* ===========================================================
@@ -2405,35 +2408,64 @@ a:focus-visible, button:focus-visible{
     font-size: 20px;
     z-index: 30;
   }
+  
+  /* Portfolio Letters: tightly tracked, centered, beautifully aligned */
   .hero-letters {
-    width: 92vw;
-    max-width: 420px;
-    top: 40%;
-    transform: translateY(-50%);
-    z-index: 1;
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 95vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -0.04em;
+    z-index: 1;
+    pointer-events: none;
+    margin: 0 auto;
   }
   .h-let {
-    font-size: clamp(34px, 10.5vw, 48px);
+    font-family: var(--font-display);
+    font-size: clamp(38px, 11.5vw, 54px);
+    line-height: 0.85;
+    color: var(--white);
     opacity: 1 !important;
     transform: none !important;
+    display: inline-block;
   }
   .hero__red-circle {
-    width: clamp(260px, 75vw, 340px);
-    height: clamp(260px, 75vw, 340px);
-    top: 40%;
+    position: absolute;
+    top: 42%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0.65;
+    width: clamp(230px, 68vw, 300px);
+    height: clamp(230px, 68vw, 300px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168, 25, 43, 0.75) 0%, rgba(168, 25, 43, 0.25) 50%, transparent 70%);
+    filter: blur(25px);
+    z-index: 0;
   }
   .hero-characters {
-    top: 48%;
-    transform: translate(-50%, -38%) scale(0.92);
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -42%) scale(0.74);
     width: 100vw;
-    height: 82vh;
+    height: 75vh;
     z-index: 4;
+    pointer-events: none;
   }
-  .h-char-final, .h-char-video {
+  .h-char-video {
+    display: none !important;
+  }
+  .h-char-final {
+    display: block !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-position: center bottom;
     object-fit: contain;
     opacity: 1 !important;
@@ -2441,7 +2473,7 @@ a:focus-visible, button:focus-visible{
   }
   .hero-ui {
     position: absolute;
-    top: 14%;
+    top: 13%;
     left: 0;
     right: 0;
     width: 100%;
@@ -2454,8 +2486,9 @@ a:focus-visible, button:focus-visible{
     z-index: 25;
   }
   .hero__designation {
-    font-size: clamp(13px, 3.8vw, 15px);
-    letter-spacing: 0.2em;
+    font-size: clamp(14px, 4vw, 17px);
+    font-weight: 700;
+    letter-spacing: 0.22em;
     color: var(--white);
     text-align: center;
     justify-content: center;
@@ -2473,12 +2506,12 @@ a:focus-visible, button:focus-visible{
   .hero-year-wrap {
     position: absolute;
     top: auto;
-    bottom: 78px;
+    bottom: 72px;
     left: 0;
     right: 0;
     width: 100%;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 0.25em;
     color: rgba(255, 255, 255, 0.5);
     z-index: 25;
@@ -2488,7 +2521,7 @@ a:focus-visible, button:focus-visible{
   .hero__menu {
     position: absolute;
     top: auto;
-    bottom: 22px;
+    bottom: 20px;
     left: 0;
     right: 0;
     width: 100%;
@@ -2496,7 +2529,7 @@ a:focus-visible, button:focus-visible{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     z-index: 25;
   }
   .hero__menu-item {
@@ -2831,19 +2864,19 @@ a:focus-visible, button:focus-visible{
   }
 
   /* ===========================================================
-     CONTACT FINALE (Stacked, Polished, Zero Dead Void)
+     CONTACT FINALE (Stacked, Symmetrical, Zero Flying Handles)
      =========================================================== */
   .contact-finale {
     min-height: auto;
     height: auto;
-    padding: 75px 16px 60px;
+    padding: 75px 18px 60px;
     overflow: hidden;
   }
   .finale-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 36px;
+    gap: 28px;
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
@@ -2859,64 +2892,67 @@ a:focus-visible, button:focus-visible{
   .finale-heading {
     font-size: 28px;
     margin-bottom: 16px;
+    text-align: center;
   }
   .finale-portrait-wrapper {
-    margin: 0 auto 16px;
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .finale-portrait {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--hud-cyan);
     box-shadow: 0 0 25px rgba(66, 217, 255, 0.4);
   }
+
+  /* Grounded, Centered 4-Button Social Dock Directly Under Portrait */
   .finale-social {
-    position: absolute;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
+    position: absolute !important;
+    top: 146px !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(10, 18, 30, 0.95) !important;
+    border: 1px solid var(--hud-cyan) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6), 0 0 10px rgba(66, 217, 255, 0.2) !important;
+    color: var(--hud-cyan) !important;
+    z-index: 10 !important;
+  }
+  .finale-social .social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(8, 14, 22, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   }
   .finale-social .social-text {
-    display: none;
+    display: none !important;
   }
-  .finale-social-1 { top: 10px; right: 20px; }
-  .finale-social-2 { bottom: 20px; right: 10px; }
-  .finale-social-3 { bottom: 20px; left: 10px; }
-  .finale-social-4 { top: 10px; left: 20px; }
+
+  /* Exact horizontal symmetry: Instagram, GitHub, LinkedIn, Email */
+  .finale-social-1 { left: calc(50% - 75px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
+  .finale-social-2 { left: calc(50% - 25px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
+  .finale-social-3 { left: calc(50% + 25px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
+  .finale-social-4 { left: calc(50% + 75px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
 
   .finale-name {
     font-size: 22px;
-    margin-top: 8px;
+    margin-top: 75px !important; /* Space for the 4 grounded social buttons */
+    text-align: center;
   }
   .finale-name span {
     font-size: 11px;
     letter-spacing: 0.15em;
   }
-  .finale-projects {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 320px;
-    margin: 20px auto 0;
-  }
-  .finale-project {
-    width: 100%;
-    height: 72px;
-  }
+
   .finale-right {
     width: 100%;
     padding: 0;
@@ -2934,6 +2970,19 @@ a:focus-visible, button:focus-visible{
   .btn-talk {
     padding: 12px 30px;
     font-size: 12px;
+  }
+
+  .finale-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin: 20px auto 0;
+  }
+  .finale-project {
+    width: 100%;
+    height: 72px;
   }
   .finale-decor {
     display: none; /* Eliminate massive blank decorative spacing at bottom */

@@ -92,6 +92,26 @@
   // ==========================================
   if (typeof gsap !== 'undefined') {
     if (!prefersReduced) {
+      var isMobileHero = window.innerWidth <= 768;
+      var walkVid = document.getElementById('walk-vid');
+
+      if (isMobileHero) {
+        // Mobile: directly show crisp high-res final character and aligned letters with zero video lag
+        if (walkVid) {
+          try { walkVid.pause(); } catch(e) {}
+          walkVid.style.display = "none";
+        }
+        gsap.set(".h-char-video", { opacity: 0, display: "none" });
+        gsap.set(".h-char-final", { opacity: 1, scale: 1, x: 0, y: 0, display: "block" });
+        gsap.set([".h-let", ".hero-year-wrap", ".h-ui-item", ".hero__designation", ".hero__menu-item"], {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+          clearProps: "transform"
+        });
+        return;
+      }
       
       // Initial state: hide everything
       gsap.set([".h-let", ".hero-year-wrap", ".h-ui-item", ".h-char-video", ".h-char-final"], { opacity: 0 });
@@ -669,42 +689,50 @@
     // GSAP FINALE ANIMATION
     // ==========================================
     if (typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+      var isMobileContact = window.innerWidth <= 768;
 
-    // Initial states for non-GSAP elements are handled by CSS, but we can set them here to be safe
-    gsap.set(".gs-fade", { opacity: 0, y: 20 });
-    gsap.set(".gs-scale", { scale: 0.9, opacity: 0 });
-    gsap.set(".gs-slide-up", { y: 60, opacity: 0 });
-    gsap.set(".gs-slide-left", { x: 100, opacity: 0 });
-    
-    // Create the timeline
-    var tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#contact",
-        start: "top 75%", // Trigger when top of contact hits 75% down viewport
-        toggleActions: "play reverse play reverse" // Re-trigger on scroll back
+      if (!isMobileContact) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initial states for desktop
+        gsap.set(".gs-fade", { opacity: 0, y: 20 });
+        gsap.set(".gs-scale", { scale: 0.9, opacity: 0 });
+        gsap.set(".gs-slide-up", { y: 60, opacity: 0 });
+        gsap.set(".gs-slide-left", { x: 100, opacity: 0 });
+        
+        // Create the timeline
+        var tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#contact",
+            start: "top 75%", // Trigger when top of contact hits 75% down viewport
+            toggleActions: "play reverse play reverse" // Re-trigger on scroll back
+          }
+        });
+
+        // 1. Fade in heading and name
+        tl.to(".gs-fade", { opacity: 1, y: 0, duration: 1.2, stagger: 0.4, ease: "power2.out" })
+          // 2. Scale in portrait
+          .to(".gs-scale", { scale: 1, opacity: 1, duration: 1.5, ease: "back.out(1.2)" }, "-=0.6")
+          
+          // 3. Radial pop out of socials (Desktop only)
+          .to(".finale-social-1", { x: 110, y: -110, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.2")
+          .to(".finale-social-2", { x: 150, y: -40, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.8")
+          .to(".finale-social-3", { x: 150, y: 40, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.8")
+          .to(".finale-social-4", { x: 110, y: 110, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.8")
+          
+          // 4. Fade in the social text
+          .to(".social-text", { opacity: 1, x: 10, duration: 0.8, stagger: 0.2 }, "-=0.4")
+          
+          // 5. Slide in THANK YOU from the right
+          .to(".gs-slide-left", { x: 0, opacity: 1, duration: 1.5, ease: "power3.out" }, "-=1.5")
+          
+          // 6. Slide up the projects
+          .to(".gs-slide-up", { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" }, "-=1.0");
+      } else {
+        // Mobile: zero radial offsets so handles NEVER fly off screen
+        gsap.set([".gs-fade", ".gs-scale", ".gs-slide-up", ".gs-slide-left"], { opacity: 1, x: 0, y: 0, scale: 1 });
+        gsap.set(".finale-social", { opacity: 1, clearProps: "transform,x,y" });
       }
-    });
-
-    // 1. Fade in heading and name
-    tl.to(".gs-fade", { opacity: 1, y: 0, duration: 1.2, stagger: 0.4, ease: "power2.out" })
-      // 2. Scale in portrait
-      .to(".gs-scale", { scale: 1, opacity: 1, duration: 1.5, ease: "back.out(1.2)" }, "-=0.6")
-      
-      // 3. Radial pop out of socials
-      .to(".finale-social-1", { x: 110, y: -110, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.2")
-      .to(".finale-social-2", { x: 150, y: -40, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.8")
-      .to(".finale-social-3", { x: 150, y: 40, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.8")
-      .to(".finale-social-4", { x: 110, y: 110, opacity: 1, duration: 1.2, ease: "back.out(1.2)" }, "-=0.8")
-      
-      // 4. Fade in the social text
-      .to(".social-text", { opacity: 1, x: 10, duration: 0.8, stagger: 0.2 }, "-=0.4")
-      
-      // 5. Slide in THANK YOU from the right
-      .to(".gs-slide-left", { x: 0, opacity: 1, duration: 1.5, ease: "power3.out" }, "-=1.5")
-      
-      // 6. Slide up the projects
-      .to(".gs-slide-up", { y: 0, opacity: 1, duration: 1.5, ease: "power3.out" }, "-=1.0");
     }
     // ==========================================
     // GSAP PROJECTS ANIMATIONS
