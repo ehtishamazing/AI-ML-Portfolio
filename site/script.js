@@ -710,11 +710,13 @@
     // GSAP PROJECTS ANIMATIONS
     // ==========================================
     if (typeof ScrollTrigger !== 'undefined') {
-      // 1. Custom Cursor Logic
+      var isMobileScreen = window.innerWidth <= 768;
+
+      // 1. Custom Cursor Logic (Desktop only)
       var cursor = document.getElementById("custom-cursor");
       var projectsSection = document.getElementById("projects");
       
-      if (cursor && projectsSection) {
+      if (!isMobileScreen && cursor && projectsSection) {
         document.addEventListener("mousemove", function(e) {
           cursor.style.left = e.clientX + "px";
           cursor.style.top = e.clientY + "px";
@@ -739,34 +741,39 @@
       }
 
       // 2. Staggered Entrance
-      gsap.set(".tile", { y: 50, opacity: 0 });
-      gsap.to(".tile", {
-        scrollTrigger: {
-          trigger: "#collage",
-          start: "top 80%",
-          toggleActions: "play reverse play reverse"
-        },
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out"
-      });
-
-      // 3. Vertical Parallax
-      gsap.utils.toArray(".tile").forEach(function(tile, i) {
-        var speed = (i % 3 === 0) ? -40 : (i % 2 === 0) ? -20 : -60;
-        gsap.to(tile, {
+      if (!isMobileScreen) {
+        gsap.set(".tile", { y: 50, opacity: 0 });
+        gsap.to(".tile", {
           scrollTrigger: {
             trigger: "#collage",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1
+            start: "top 80%",
+            toggleActions: "play reverse play reverse"
           },
-          y: speed,
-          ease: "none"
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out"
         });
-      });
+
+        // 3. Vertical Parallax (Desktop multi-column only)
+        gsap.utils.toArray(".tile").forEach(function(tile, i) {
+          var speed = (i % 3 === 0) ? -40 : (i % 2 === 0) ? -20 : -60;
+          gsap.to(tile, {
+            scrollTrigger: {
+              trigger: "#collage",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            },
+            y: speed,
+            ease: "none"
+          });
+        });
+      } else {
+        // Mobile: ensure all tiles are fully visible and resting in normal document flow
+        gsap.set(".tile", { y: 0, opacity: 1, clearProps: "transform" });
+      }
     }
 
     // ============ PROJECTS LIGHTBOX ============
