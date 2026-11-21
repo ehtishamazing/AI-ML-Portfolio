@@ -391,8 +391,8 @@
       var currentTz = -600;
 
       function updateGalleryZ() {
-        if (window.innerWidth <= 480) currentTz = -260;
-        else if (window.innerWidth <= 768) currentTz = -360;
+        if (window.innerWidth <= 480) currentTz = -220;
+        else if (window.innerWidth <= 768) currentTz = -230;
         else if (window.innerWidth <= 1024) currentTz = -460;
         else currentTz = -580;
       }

@@ -2743,46 +2743,48 @@ a:focus-visible, button:focus-visible{
   .archive {
     min-height: auto;
     height: auto;
-    padding: 75px 16px 50px;
+    padding: 85px 16px 50px;
   }
   .archive-gallery-container {
-    min-height: 460px;
-    height: 480px;
+    min-height: 480px;
+    height: 500px;
     width: 100%;
-    perspective: 750px;
+    perspective: 700px;
     overflow: hidden;
     position: relative;
     margin-top: 10px;
   }
   .gallery-wall {
-    transform: translateZ(-300px) rotateY(0deg);
+    transform: translateZ(-220px) rotateY(0deg);
   }
   .cert-frame {
-    width: 250px;
+    width: 230px;
     aspect-ratio: 4/3;
     padding: 10px;
-    --transZ: 280px;
-    --transY: -115px; /* Raises certificate safely above the character */
+    --transZ: 210px;
+    --transY: -55px; /* Brings certificate down into comfortable viewing angle */
   }
   .gallery-character {
     position: absolute;
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    height: 40%; /* Stands elegantly at the bottom looking up without blocking the cert */
+    height: 54%; /* Stands nicely looking directly up at the certificate */
     z-index: 2;
     pointer-events: none;
     opacity: 0.95;
   }
   .gallery-nav {
-    top: 36%;
+    top: 42%;
     font-size: 32px;
-    padding: 10px;
+    padding: 8px;
+    z-index: 20;
   }
   .gallery-nav-prev { left: 4px; }
   .gallery-nav-next { right: 4px; }
   .gallery-indicators {
-    bottom: 12px;
+    bottom: 8px;
+    z-index: 50;
   }
 
   /* ===========================================================
@@ -2869,14 +2871,14 @@ a:focus-visible, button:focus-visible{
   .contact-finale {
     min-height: auto;
     height: auto;
-    padding: 75px 18px 60px;
-    overflow: hidden;
+    padding: 110px 18px 70px;
+    overflow: visible;
   }
   .finale-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    gap: 20px;
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
@@ -2890,18 +2892,21 @@ a:focus-visible, button:focus-visible{
     padding: 0;
   }
   .finale-heading {
-    font-size: 28px;
-    margin-bottom: 16px;
+    font-size: 24px;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
     text-align: center;
   }
   .finale-portrait-wrapper {
     position: relative;
-    width: 130px;
-    height: 130px;
+    width: 100%;
+    height: auto;
     margin: 0 auto;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
   }
   .finale-portrait {
     width: 130px;
@@ -2910,79 +2915,103 @@ a:focus-visible, button:focus-visible{
     object-fit: cover;
     border: 2px solid var(--hud-cyan);
     box-shadow: 0 0 25px rgba(66, 217, 255, 0.4);
+    margin: 0 auto 16px;
+    display: block;
+    flex-basis: 100%;
   }
 
   /* Grounded, Centered 4-Button Social Dock Directly Under Portrait */
   .finale-social {
-    position: absolute !important;
-    top: 146px !important;
-    width: 42px !important;
-    height: 42px !important;
+    position: static !important;
+    transform: none !important;
+    width: 44px !important;
+    height: 44px !important;
     border-radius: 50% !important;
-    display: flex !important;
+    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     background: rgba(10, 18, 30, 0.95) !important;
     border: 1px solid var(--hud-cyan) !important;
     box-shadow: 0 4px 15px rgba(0,0,0,0.6), 0 0 10px rgba(66, 217, 255, 0.2) !important;
     color: var(--hud-cyan) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     z-index: 10 !important;
+    margin: 0 6px !important;
   }
   .finale-social .social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    color: var(--hud-cyan) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .finale-social .social-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke: var(--hud-cyan) !important;
   }
   .finale-social .social-text {
     display: none !important;
   }
 
-  /* Exact horizontal symmetry: Instagram, GitHub, LinkedIn, Email */
-  .finale-social-1 { left: calc(50% - 75px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
-  .finale-social-2 { left: calc(50% - 25px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
-  .finale-social-3 { left: calc(50% + 25px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
-  .finale-social-4 { left: calc(50% + 75px) !important; transform: translateX(-50%) !important; right: auto !important; bottom: auto !important; }
+  /* Reset all individual offsets on mobile */
+  .finale-social-1, .finale-social-2, .finale-social-3, .finale-social-4 {
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
 
   .finale-name {
     font-size: 22px;
-    margin-top: 75px !important; /* Space for the 4 grounded social buttons */
+    margin-top: 18px !important;
     text-align: center;
   }
   .finale-name span {
     font-size: 11px;
     letter-spacing: 0.15em;
+    color: var(--gray);
   }
 
   .finale-right {
     width: 100%;
-    padding: 0;
+    padding: 10px 0 0 0;
     text-align: center;
   }
   .finale-right h1 {
     font-size: clamp(34px, 11vw, 48px);
     margin-bottom: 12px;
   }
-  .finale-right p {
+  .finale-right h2 {
+    font-size: 20px;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+  .finale-right h3 {
     font-size: 12px;
     letter-spacing: 0.15em;
-    margin-bottom: 20px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .finale-right .btn-lightbox {
+    padding: 14px 36px;
+    font-size: 12px;
+    border-radius: 999px;
   }
   .btn-talk {
-    padding: 12px 30px;
+    padding: 14px 36px;
     font-size: 12px;
+    border-radius: 999px;
   }
 
+  /* Projects cards hidden on mobile contact to keep it clean and focused */
   .finale-projects {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 320px;
-    margin: 20px auto 0;
-  }
-  .finale-project {
-    width: 100%;
-    height: 72px;
+    display: none !important;
   }
   .finale-decor {
     display: none; /* Eliminate massive blank decorative spacing at bottom */
