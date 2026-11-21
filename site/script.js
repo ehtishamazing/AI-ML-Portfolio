@@ -110,6 +110,24 @@
           scale: 1,
           clearProps: "transform"
         });
+
+        // Fast and smooth preloader dismiss on mobile
+        var preloaderMobile = document.getElementById("preloader");
+        var preloaderTlMobile = gsap.timeline({
+          onComplete: function() {
+            if (preloaderMobile) preloaderMobile.style.display = "none";
+          }
+        });
+
+        preloaderTlMobile.to(".preloader__fill", { height: "100%", duration: 0.9, ease: "power2.inOut", delay: 0.1 })
+                         .to(".preloader__logo", { scale: 50, opacity: 0, duration: 0.5, ease: "power4.in" })
+                         .set(".preloader", { display: "none" });
+
+        // Failsafe timeout: ensure preloader is NEVER stuck on mobile
+        setTimeout(function() {
+          if (preloaderMobile) preloaderMobile.style.display = "none";
+        }, 1800);
+
         return;
       }
       
